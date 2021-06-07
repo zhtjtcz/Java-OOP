@@ -2,7 +2,7 @@ package Plant;
 
 import javax.swing.*;
 
-public class plant extends JLabel implements Runnable {
+public class Plant extends JLabel implements Runnable {
 	private String name;
 
 	protected int hp = 0;
