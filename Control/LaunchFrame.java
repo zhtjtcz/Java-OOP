@@ -29,9 +29,9 @@ public class LaunchFrame extends JFrame {
 				g.drawImage(background.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
 			}
 		};
-
 		panel.setBounds(0, 0, background.getIconWidth(), background.getIconHeight());
 		layeredPane.add(panel, 10);
+		// Setting the icon and background img
 
 		ImageIcon startImg = new ImageIcon("img\\SelectorScreen_Adventure_highlight.png");
 		ImageIcon startImg2 = new ImageIcon("img\\SelectorScreen_StartAdventure_Highlight.png");
@@ -52,6 +52,7 @@ public class LaunchFrame extends JFrame {
 		});
 		startLabel.setBounds(410, 70, startImg.getIconWidth(), startImg2.getIconHeight());
 		layeredPane.add(startLabel, 0);
+		// Add the start game button
 
 		ImageIcon quitImg = new ImageIcon("img\\SelectorScreen_Quit1.png");
 		ImageIcon quitImg2 = new ImageIcon("img\\SelectorScreen_Quit2.png");
@@ -71,6 +72,60 @@ public class LaunchFrame extends JFrame {
 		});
 		quitLabel.setBounds(725, 510, quitImg.getIconWidth(), quitImg2.getIconHeight());
 		layeredPane.add(quitLabel, 0);
-	}
+		// Add the quit button
 
+		ImageIcon helpPic = new ImageIcon("img\\Help.png");
+        JLabel helpView = new JLabel(helpPic) {
+            private static final long serialVersionUID = 1L;
+
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(helpPic.getImage(), 0, 0, 810, 625, this);
+            }
+        };
+        helpView.setVisible(false);
+        layeredPane.add(helpView, new Integer(114514));
+		// Add the help button
+		// TODO change the picture to a text?
+
+		ImageIcon helpImg = new ImageIcon("img\\SelectorScreen_Help1.png");
+        ImageIcon helpImg2 = new ImageIcon("img\\SelectorScreen_Help2.png");
+        JLabel helpLabel = new JLabel(helpImg);
+
+        JLabel helpReturnButton = new JLabel();
+        helpReturnButton.setBounds(325, 543, 155, 40);
+        helpReturnButton.setVisible(false);
+        helpReturnButton.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                helpView.setVisible(false);
+                helpReturnButton.setVisible(false);
+                startLabel.setVisible(true);
+                quitLabel.setVisible(true);
+                helpLabel.setVisible(true);
+            }
+        });
+        layeredPane.add(helpReturnButton, new Integer(998244353));
+
+        helpLabel.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                helpLabel.setIcon(helpImg2);
+            }
+
+            public void mouseExited(MouseEvent e) {
+                helpLabel.setIcon(helpImg);
+            }
+
+            public void mouseClicked(MouseEvent e) {
+                helpView.setVisible(true);
+                helpReturnButton.setVisible(true);
+                startLabel.setVisible(false);
+                quitLabel.setVisible(false);
+                helpLabel.setVisible(false);
+                helpView.setBounds(0, 0, 810, 625);
+				// Set all buttons unvisible
+            }
+        });
+        helpLabel.setBounds(655, 520, helpImg.getIconWidth(), helpImg2.getIconHeight());
+        layeredPane.add(helpLabel, 0);
+	}
 }
