@@ -10,6 +10,13 @@ public class LaunchFrame extends JFrame {
 
 	public JLayeredPane layeredPane = new JLayeredPane();
 
+	private GameBoard gameboard;
+
+	public void reset() {
+		gameboard.reset();
+		System.exit(0);
+	}
+
 	public LaunchFrame() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Plants VS Zombies");
@@ -75,58 +82,58 @@ public class LaunchFrame extends JFrame {
 		// Add the quit button
 
 		ImageIcon helpPic = new ImageIcon("img\\Help.png");
-        JLabel helpView = new JLabel(helpPic) {
-            private static final long serialVersionUID = 1L;
+		JLabel helpView = new JLabel(helpPic) {
+			private static final long serialVersionUID = 1L;
 
-            public void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                g.drawImage(helpPic.getImage(), 0, 0, 810, 625, this);
-            }
-        };
-        helpView.setVisible(false);
-        layeredPane.add(helpView, new Integer(114514));
+			public void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				g.drawImage(helpPic.getImage(), 0, 0, 810, 625, this);
+			}
+		};
+		helpView.setVisible(false);
+		layeredPane.add(helpView, new Integer(114514));
 		// Add the help button
 		// TODO change the picture to a text?
 
 		ImageIcon helpImg = new ImageIcon("img\\SelectorScreen_Help1.png");
-        ImageIcon helpImg2 = new ImageIcon("img\\SelectorScreen_Help2.png");
-        JLabel helpLabel = new JLabel(helpImg);
+		ImageIcon helpImg2 = new ImageIcon("img\\SelectorScreen_Help2.png");
+		JLabel helpLabel = new JLabel(helpImg);
 
-        JLabel helpReturnButton = new JLabel();
-        helpReturnButton.setBounds(325, 543, 155, 40);
-        helpReturnButton.setVisible(false);
-        helpReturnButton.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                helpView.setVisible(false);
-                helpReturnButton.setVisible(false);
-                startLabel.setVisible(true);
-                quitLabel.setVisible(true);
-                helpLabel.setVisible(true);
-            }
-        });
-        layeredPane.add(helpReturnButton, new Integer(998244353));
+		JLabel helpReturnButton = new JLabel();
+		helpReturnButton.setBounds(325, 543, 155, 40);
+		helpReturnButton.setVisible(false);
+		helpReturnButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				helpView.setVisible(false);
+				helpReturnButton.setVisible(false);
+				startLabel.setVisible(true);
+				quitLabel.setVisible(true);
+				helpLabel.setVisible(true);
+			}
+		});
+		layeredPane.add(helpReturnButton, new Integer(998244353));
 
-        helpLabel.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(MouseEvent e) {
-                helpLabel.setIcon(helpImg2);
-            }
+		helpLabel.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				helpLabel.setIcon(helpImg2);
+			}
 
-            public void mouseExited(MouseEvent e) {
-                helpLabel.setIcon(helpImg);
-            }
+			public void mouseExited(MouseEvent e) {
+				helpLabel.setIcon(helpImg);
+			}
 
-            public void mouseClicked(MouseEvent e) {
-                helpView.setVisible(true);
-                helpReturnButton.setVisible(true);
-                startLabel.setVisible(false);
-                quitLabel.setVisible(false);
-                helpLabel.setVisible(false);
-                helpView.setBounds(0, 0, 810, 625);
+			public void mouseClicked(MouseEvent e) {
+				helpView.setVisible(true);
+				helpReturnButton.setVisible(true);
+				startLabel.setVisible(false);
+				quitLabel.setVisible(false);
+				helpLabel.setVisible(false);
+				helpView.setBounds(0, 0, 810, 625);
 				// Set all buttons unvisible
-            }
-        });
-        helpLabel.setBounds(655, 520, helpImg.getIconWidth(), helpImg2.getIconHeight());
-        layeredPane.add(helpLabel, 0);
+			}
+		});
+		helpLabel.setBounds(655, 520, helpImg.getIconWidth(), helpImg2.getIconHeight());
+		layeredPane.add(helpLabel, 0);
 
 		ImageIcon optionImg = new ImageIcon("img\\SelectorScreen_Options1.png");
 		ImageIcon optionImg2 = new ImageIcon("img\\SelectorScreen_Options2.png");
