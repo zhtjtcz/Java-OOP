@@ -127,5 +127,26 @@ public class LaunchFrame extends JFrame {
         });
         helpLabel.setBounds(655, 520, helpImg.getIconWidth(), helpImg2.getIconHeight());
         layeredPane.add(helpLabel, 0);
+
+		ImageIcon optionImg = new ImageIcon("img\\SelectorScreen_Options1.png");
+		ImageIcon optionImg2 = new ImageIcon("img\\SelectorScreen_Options2.png");
+		JLabel optionLabel = new JLabel(optionImg);
+		optionLabel.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				optionLabel.setIcon(optionImg2);
+			}
+
+			public void mouseExited(MouseEvent e) {
+				optionLabel.setIcon(optionImg);
+			}
+
+			public void mouseClicked(MouseEvent e) {
+				System.exit(0);
+				// TODO add a new page
+			}
+		});
+		optionLabel.setBounds(572, 486, optionImg.getIconWidth(), optionImg2.getIconHeight());
+		layeredPane.add(optionLabel, 0);
+		// Add the option button
 	}
 }
