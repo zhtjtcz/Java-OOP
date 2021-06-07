@@ -5,7 +5,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
-public class card extends JLabel implements MouseListener, Runnable{
+public class Card extends JLabel implements MouseListener, Runnable{
 	private static final long serialVersionUID = 1L;
 
 	@Override

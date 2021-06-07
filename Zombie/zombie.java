@@ -2,7 +2,7 @@ package Zombie;
 
 import javax.swing.*;
 
-public class zombie extends JLabel implements Runnable {
+public class Zombie extends JLabel implements Runnable {
 	private static int MOVE = 1;
 	private static int ATTACK = 2;
 	private static int LOSTHEAD = 3;
