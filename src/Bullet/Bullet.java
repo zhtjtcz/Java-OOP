@@ -20,7 +20,6 @@ public class Bullet extends JLabel implements Runnable {
     }
 
     public Bullet() { }
-    // Make VSCode happy
 
     public Bullet(Controller controller, int row, int column) {
         setVisible(true);

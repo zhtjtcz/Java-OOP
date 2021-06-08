@@ -81,6 +81,8 @@ public class Plant extends JLabel implements Runnable {
         return cardCD;
     }
 
+    public String getName() { return this.name; }
+
     public Controller getController() {
         return controller;
     }
@@ -98,14 +100,14 @@ public class Plant extends JLabel implements Runnable {
     public void picChange() {
         pic = (pic + 1) % SumPic;
         img = new ImageIcon("img\\" + this.name + "\\" + this.name + "_" + pic + ".png");
-        if (this.getName() == "WallNut")
+        if (this.getName().equals("WallNut"))
             img = new ImageIcon("img\\" + this.name + "\\" + this.name + "_cracked" + state + "\\" + this.name
                     + "_cracked" + state + "_" + pic + ".png");
     }
 
     public void attacked(int x) {
         this.hp -= x;
-        if (this.getName() == "WallNut") {
+        if (this.getName().equals("WallNut")) {
             if (this.hp < 1333) {
                 sleepTime = 96;
                 this.SumPic = 15;
@@ -140,7 +142,7 @@ public class Plant extends JLabel implements Runnable {
         ImageIcon shadow = new ImageIcon("img\\shadow.png");
         g2.drawImage(shadow.getImage(), -11, 45, shadow.getIconWidth(), shadow.getIconHeight(), null);
         g.drawImage(img.getImage(), 0, 0, img.getIconWidth(), img.getIconHeight(), null);
-        if (getName() == "SunFlower") {
+        if (getName().equals("SunFlower")) {
             if (this.getCnow() > 261) {
                 ImageIcon tempImg = new ImageIcon("img\\GoldenSunflower\\Frame" + getPic() + ".png");
                 g.drawImage(tempImg.getImage(), 0, 0, tempImg.getIconWidth(), tempImg.getIconHeight(), null);
@@ -150,7 +152,7 @@ public class Plant extends JLabel implements Runnable {
 
     void accumulate() {
         if (this.canChange == false) return;
-        if (getName() == "SunFlower") {
+        if (getName().equals("SunFlower")) {
             if (Cnow <= 261)
                 this.picChange();
         } else {
@@ -187,12 +189,13 @@ public class Plant extends JLabel implements Runnable {
         boolean hasAttacked = false;// repeater
         while (hp > 0) {
             this.accumulate();
-            if (getName() == "SunFlower") {
+            // System.out.println(getName());
+            if (getName().equals("SunFlower")) {
                 if (this.getCnow() >= this.getCD()) {
                     this.setCnow(0);
                     new Thread(new Sun(getController(), getR(), getC())).start();
                 }
-            } else if (getName() == "PeaShooter") {
+            } else if (getName().equals("PeaShooter")) {
                 if (this.getCnow() >= this.getCD()) {
                     if (controller.haveZombie(row)) {
                         this.setCnow(0);
@@ -200,7 +203,7 @@ public class Plant extends JLabel implements Runnable {
                     } else
                         this.setCnow(CD);
                 }
-            } else if (getName() == "Repeater") {
+            } else if (getName().equals("Repeater")) {
                 if (this.getCnow() >= this.getCD()) {
                     hasAttacked = true;
                     if (controller.haveZombie(row)) {
@@ -211,7 +214,7 @@ public class Plant extends JLabel implements Runnable {
                 } else if (this.getCnow() == this.getCD() / 4 && hasAttacked) {
                     new Thread(new Bullet(getController(), getR(), getC())).start();
                 }
-            } else if (getName() == "CherryBomb") {
+            } else if (getName().equals("CherryBomb")) {
                 if (this.pic == this.SumPic - 1) {
                     this.setBounds(5 + column * 80, 40 + row * 100, 300, 300);
                     controller.boom(row, column);
