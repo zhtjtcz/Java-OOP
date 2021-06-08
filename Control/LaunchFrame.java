@@ -54,7 +54,7 @@ public class LaunchFrame extends JFrame {
 
 			public void mouseClicked(MouseEvent e) {
 				layeredPane.setVisible(false);
-				// TODO game
+				gameboard = new GameBoard(LaunchFrame.this);
 			}
 		});
 		startLabel.setBounds(410, 70, startImg.getIconWidth(), startImg2.getIconHeight());
