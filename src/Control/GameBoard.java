@@ -231,6 +231,6 @@ public class GameBoard extends JLayeredPane {
         topPanel.setVisible(false);
         topPanel.setOpaque(false);
         topPanel.setBounds(0, 0, panel.getIconWidth(), panel.getIconHeight());
-        GameBoard.this.add(topPanel, new Integer(998244353));
+        GameBoard.this.add(topPanel, Integer.valueOf(998244353));
     }
 }

@@ -91,7 +91,7 @@ public class LaunchFrame extends JFrame {
             }
         };
         helpView.setVisible(false);
-        layeredPane.add(helpView, new Integer(114514));
+        layeredPane.add(helpView, Integer.valueOf(114514));
         // Add the help button
         // TODO change the picture to a text?
 
@@ -138,7 +138,7 @@ public class LaunchFrame extends JFrame {
         ImageIcon optionImg = new ImageIcon("img\\SelectorScreen_Options1.png");
         ImageIcon optionImg2 = new ImageIcon("img\\SelectorScreen_Options2.png");
         JLabel optionLabel = new JLabel(optionImg);
-        optionLabel.addMouseListener(new MouseAdapter() {
+            optionLabel.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
                 optionLabel.setIcon(optionImg2);
             }

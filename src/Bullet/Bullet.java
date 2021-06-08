@@ -19,8 +19,7 @@ public class Bullet extends JLabel implements Runnable {
         g2.drawImage(img.getImage(), 0, 0, img.getIconWidth(), img.getIconHeight(), this);
     }
 
-    public Bullet() {
-    }
+    public Bullet() { }
     // Make VSCode happy
 
     public Bullet(Controller controller, int row, int column) {
@@ -31,7 +30,7 @@ public class Bullet extends JLabel implements Runnable {
         this.x = 40 + column * 80 + 40;
         this.y = 90 + row * 100;
         this.setBounds(x, y, img.getIconWidth(), img.getIconHeight());
-        controller.getLayeredPane().add(this, new Integer(500));
+        controller.getLayeredPane().add(this, Integer.valueOf(500));
     }
 
     public Bullet Pea(Controller controller, int row, int column) {
