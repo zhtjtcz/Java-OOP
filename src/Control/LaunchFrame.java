@@ -120,8 +120,138 @@ public class LaunchFrame extends JFrame {
         });
         surviveLabel.setBounds(420, 325, surviveImg.getIconWidth(), surviveImg2.getIconHeight());
         layeredPane.add(surviveLabel, 0);
-        // Add the smart game button
+        // Add the survive game button
 
+
+        ImageIcon almanacImg = new ImageIcon("img\\SelectorScreen_Almanac.png");
+        ImageIcon almanacImg2 = new ImageIcon("img\\SelectorScreen_AlmanacHighlight.png");
+        JLabel almanacLabel = new JLabel(almanacImg);
+        almanacLabel.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                almanacLabel.setIcon(almanacImg2);
+            }
+
+            public void mouseExited(MouseEvent e) {
+                almanacLabel.setIcon(almanacImg);
+            }
+
+            public void mouseClicked(MouseEvent e) {
+            }
+        });
+        almanacLabel.setBounds(340, 425, almanacImg.getIconWidth(), almanacImg2.getIconHeight());
+        layeredPane.add(almanacLabel, 0);
+        // Add the almanac book
+
+        ImageIcon gardenImg = new ImageIcon("img\\SelectorScreen_ZenGarden.png");
+        ImageIcon gardenImg2 = new ImageIcon("img\\SelectorScreen_ZenGardenHighlight.png");
+        JLabel gardenLabel = new JLabel(gardenImg);
+        gardenLabel.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                gardenLabel.setIcon(gardenImg2);
+            }
+
+            public void mouseExited(MouseEvent e) {
+                gardenLabel.setIcon(gardenImg);
+            }
+
+            public void mouseClicked(MouseEvent e) {
+            }
+        });
+        gardenLabel.setBounds(175, 400, gardenImg.getIconWidth(), gardenImg2.getIconHeight());
+        layeredPane.add(gardenLabel, 0);
+        // Add the garden
+
+        ImageIcon achivementImg = new ImageIcon("img\\Achievements_pedestal.png");
+        ImageIcon achivementImg2 = new ImageIcon("img\\Achievements_pedestal_press.png");
+        JLabel achivementLabel = new JLabel(achivementImg);
+        achivementLabel.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                achivementLabel.setIcon(achivementImg2);
+            }
+
+            public void mouseExited(MouseEvent e) {
+                achivementLabel.setIcon(achivementImg);
+            }
+
+            public void mouseClicked(MouseEvent e) {
+            }
+        });
+        achivementLabel.setBounds(15, 400, achivementImg.getIconWidth(), achivementImg2.getIconHeight());
+        layeredPane.add(achivementLabel, 0);
+        // Add the achivement
+
+        ImageIcon shopImg = new ImageIcon("img\\SelectorScreen_Store.png");
+        ImageIcon shopImg2 = new ImageIcon("img\\SelectorScreen_StoreHighlight.png");
+        JLabel shopLabel = new JLabel(shopImg);
+        shopLabel.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                shopLabel.setIcon(shopImg2);
+            }
+
+            public void mouseExited(MouseEvent e) {
+                shopLabel.setIcon(shopImg);
+            }
+
+            public void mouseClicked(MouseEvent e) {
+            }
+        });
+        shopLabel.setBounds(430, 480, shopImg.getIconWidth(), shopImg2.getIconHeight());
+        layeredPane.add(shopLabel, 0);
+        // Add the shop
+
+        ImageIcon board1Img = new ImageIcon("img\\SelectorScreen_WoodSign1.png");
+        JLabel board1Label = new JLabel(board1Img);
+        board1Label.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            public void mouseExited(MouseEvent e) {
+            }
+
+            public void mouseClicked(MouseEvent e) {
+            }
+        });
+        board1Label.setBounds(30, 0, board1Img.getIconWidth(), board1Img.getIconHeight());
+        layeredPane.add(board1Label, 0);
+        // Add the board1
+
+        ImageIcon board2Img = new ImageIcon("img\\SelectorScreen_WoodSign2.png");
+        ImageIcon board2Img2 = new ImageIcon("img\\SelectorScreen_WoodSign2_press.png");
+        JLabel board2Label = new JLabel(board2Img);
+        board2Label.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                board2Label.setIcon(board2Img2);
+            }
+
+            public void mouseExited(MouseEvent e) {
+                board2Label.setIcon(board2Img);
+            }
+
+            public void mouseClicked(MouseEvent e) {
+            }
+        });
+        board2Label.setBounds(30, 140, board2Img.getIconWidth(), board2Img2.getIconHeight());
+        layeredPane.add(board2Label, 0);
+        // Add the board2
+
+        ImageIcon board3Img = new ImageIcon("img\\SelectorScreen_WoodSign3.png");
+        ImageIcon board3Img2 = new ImageIcon("img\\SelectorScreen_WoodSign3_press.png");
+        JLabel board3Label = new JLabel(board3Img);
+        board3Label.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                board3Label.setIcon(board3Img2);
+            }
+
+            public void mouseExited(MouseEvent e) {
+                board3Label.setIcon(board3Img);
+            }
+
+            public void mouseClicked(MouseEvent e) {
+            }
+        });
+        board3Label.setBounds(30, 190, board3Img.getIconWidth(), board3Img2.getIconHeight());
+        layeredPane.add(board3Label, 0);
+        // Add the board3
 
         ImageIcon quitImg = new ImageIcon("img\\SelectorScreen_Quit1.png");
         ImageIcon quitImg2 = new ImageIcon("img\\SelectorScreen_Quit2.png");
