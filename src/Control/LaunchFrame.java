@@ -40,7 +40,7 @@ public class LaunchFrame extends JFrame {
         layeredPane.add(panel, 10);
         // Setting the icon and background img
 
-        ImageIcon startImg = new ImageIcon("img\\SelectorScreen_Adventure_highlight.png");
+        ImageIcon startImg = new ImageIcon("img\\SelectorScreen_StartAdventure_Button1.png");
         ImageIcon startImg2 = new ImageIcon("img\\SelectorScreen_StartAdventure_Highlight.png");
         JLabel startLabel = new JLabel(startImg);
         startLabel.addMouseListener(new MouseAdapter() {
@@ -57,9 +57,71 @@ public class LaunchFrame extends JFrame {
                 gameboard = new GameBoard(LaunchFrame.this);
             }
         });
-        startLabel.setBounds(410, 70, startImg.getIconWidth(), startImg2.getIconHeight());
+        startLabel.setBounds(410, 60, startImg.getIconWidth(), startImg2.getIconHeight());
         layeredPane.add(startLabel, 0);
         // Add the start game button
+
+        ImageIcon miniImg = new ImageIcon("img\\SelectorScreen_Survival_button.png");
+        ImageIcon miniImg2 = new ImageIcon("img\\SelectorScreen_Survival_highlight.png");
+        JLabel miniLabel = new JLabel(miniImg);
+        miniLabel.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                miniLabel.setIcon(miniImg2);
+            }
+
+            public void mouseExited(MouseEvent e) {
+                miniLabel.setIcon(miniImg);
+            }
+
+            public void mouseClicked(MouseEvent e) {
+                layeredPane.setVisible(false);
+            }
+        });
+        miniLabel.setBounds(415, 170, miniImg.getIconWidth(), miniImg2.getIconHeight());
+        layeredPane.add(miniLabel, 0);
+        // Add the mini game button
+
+        ImageIcon smartImg = new ImageIcon("img\\SelectorScreen_Challenges_button.png");
+        ImageIcon smartImg2 = new ImageIcon("img\\SelectorScreen_Challenges_highlight.png");
+        JLabel smartLabel = new JLabel(smartImg);
+        smartLabel.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                smartLabel.setIcon(smartImg2);
+            }
+
+            public void mouseExited(MouseEvent e) {
+                smartLabel.setIcon(smartImg);
+            }
+
+            public void mouseClicked(MouseEvent e) {
+                layeredPane.setVisible(false);
+                // gameboard = new GameBoard(LaunchFrame.this);
+            }
+        });
+        smartLabel.setBounds(420, 255, smartImg.getIconWidth(), smartImg2.getIconHeight());
+        layeredPane.add(smartLabel, 0);
+        // Add the smart game button
+
+        ImageIcon surviveImg = new ImageIcon("img\\SelectorScreen_Vasebreaker_button.png");
+        ImageIcon surviveImg2 = new ImageIcon("img\\SelectorScreen_vasebreaker_highlight.png");
+        JLabel surviveLabel = new JLabel(surviveImg);
+        surviveLabel.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                surviveLabel.setIcon(surviveImg2);
+            }
+
+            public void mouseExited(MouseEvent e) {
+                surviveLabel.setIcon(surviveImg);
+            }
+
+            public void mouseClicked(MouseEvent e) {
+                layeredPane.setVisible(false);
+            }
+        });
+        surviveLabel.setBounds(420, 325, surviveImg.getIconWidth(), surviveImg2.getIconHeight());
+        layeredPane.add(surviveLabel, 0);
+        // Add the smart game button
+
 
         ImageIcon quitImg = new ImageIcon("img\\SelectorScreen_Quit1.png");
         ImageIcon quitImg2 = new ImageIcon("img\\SelectorScreen_Quit2.png");
