@@ -87,7 +87,7 @@ public class Plant extends JLabel implements Runnable {
         return controller;
     }
 
-    public void setController(Controller controller) {
+    public void setController(IController controller) {
         this.controller = controller;
     }
 

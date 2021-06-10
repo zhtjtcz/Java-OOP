@@ -111,7 +111,7 @@ public class PuzzleBoard extends JLayeredPane {
     }
 
     PuzzleBoard(LaunchFrame launchframe) {
-        this.controller = new Controller(launchframe);
+        this.controller = new PuzzleController(launchframe);
         this.GameFrame = launchframe;
         this.GameFrame.setContentPane(PuzzleBoard.this);
         this.setVisible(true);
@@ -219,13 +219,9 @@ public class PuzzleBoard extends JLayeredPane {
         Thread Animation = new Thread(new PaintThread(launchframe));
         Animation.start();
 
-        // produce sun
-        // sunThread = new Thread(new SunProducer(controller));
-        // sunThread.start();
-
-        // produce zombie
-        // zombieThread = new Thread(new ZombieProducer(controller));
-        // zombieThread.start();
+        // produce zombie TODO: Remove it from Puzzle Mode
+        zombieThread = new Thread(new ZombieProducer(controller));
+        zombieThread.start();
 
         // mouse img
         JPanel topPanel = controller.getTopPanel();
