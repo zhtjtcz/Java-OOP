@@ -23,7 +23,7 @@ public class PuzzleBoard extends JLayeredPane {
 
     IController controller;
 
-    private int x = -10;
+    private int x = -215;
     private boolean flag = false;
     private int direction = 1;
     private JLabel SunLabel;
@@ -45,32 +45,32 @@ public class PuzzleBoard extends JLayeredPane {
         @Override
         public void run() {
             try {
-                Thread.sleep(1600);
+                Thread.sleep(400);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
             // 左右移动对准
-            for (int i = 0; i < 895; i++) {
-                if (x <= -560 && !flag) {
-                    flag = true;
-                    direction = -1;
-                    try {
-                        Thread.sleep(800);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                int delaytime = 3;
-                try {
-                    Thread.sleep(delaytime);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                x -= direction;
-                Panel.repaint();
-            }
-
+//            for (int i = 0; i < 895; i++) {
+//                if (x <= -560 && !flag) {
+//                    flag = true;
+//                    direction = -1;
+//                    try {
+//                        Thread.sleep(800);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//                int delaytime = 3;
+//                try {
+//                    Thread.sleep(delaytime);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                x -= direction;
+//                Panel.repaint();
+//            }
+//            System.out.println(x);
             // cardboard淡入
             for (int y = -40; y <= 5; y++) {
                 Cardboard.setBounds(20, y, cardboard.getIconWidth(), cardboard.getIconHeight());
