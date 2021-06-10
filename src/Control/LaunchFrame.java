@@ -11,6 +11,7 @@ public class LaunchFrame extends JFrame {
     public JLayeredPane layeredPane = new JLayeredPane();
 
     private GameBoard gameboard;
+    private PuzzleBoard puzzleboard;
 
     public void reset() {
         gameboard.reset();
@@ -95,7 +96,7 @@ public class LaunchFrame extends JFrame {
 
             public void mouseClicked(MouseEvent e) {
                 layeredPane.setVisible(false);
-                // gameboard = new GameBoard(LaunchFrame.this);
+                puzzleboard = new PuzzleBoard(LaunchFrame.this);
             }
         });
         smartLabel.setBounds(420, 255, smartImg.getIconWidth(), smartImg2.getIconHeight());
