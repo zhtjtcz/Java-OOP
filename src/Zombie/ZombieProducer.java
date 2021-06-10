@@ -38,7 +38,7 @@ public class ZombieProducer implements Runnable {
                 //if (type == 0)
                 //    tempZombie = new Zombie().normalZombie(controller, row);
                 //else
-                    tempZombie = new Zombie().hzyZombie(controller, row);
+                    tempZombie = new Zombie().BucketZombie(controller, row);
 
                 controller.addZombie(tempZombie, row);
                 new Thread(tempZombie).start();
