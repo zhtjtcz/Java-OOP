@@ -190,6 +190,8 @@ public class Zombie extends JLabel implements Runnable {
 
     public void reduceHP(int x) {
         this.hp -= x;
+        // MusicPlayer play = new MusicPlayer("splat.mp3");
+        // new Thread(play).start();
         updateState();
     }
 
@@ -293,6 +295,8 @@ public class Zombie extends JLabel implements Runnable {
         controller.deleteZombie(this, row);
 
         if (this.state == DIE) {
+            MusicPlayer play = new MusicPlayer("Zombie_Fail.mp3");
+            new Thread(play).start();
             for (nowPic = 0; nowPic < nowSumPic; nowPic++) {
                 // sleep 120ms change
                 try {
