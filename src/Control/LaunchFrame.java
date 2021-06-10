@@ -14,8 +14,11 @@ public class LaunchFrame extends JFrame {
     private PuzzleBoard puzzleboard;
 
     public void reset() {
-        gameboard.reset();
-        System.exit(0);
+        if (gameboard != null)
+            gameboard.reset();
+        if (puzzleboard != null)
+            puzzleboard.reset();
+//        System.exit(0);
     }
 
     public LaunchFrame() {

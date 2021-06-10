@@ -1,5 +1,6 @@
 package Control;
 
+import Plant.Plant;
 import Zombie.*;
 import Shovel.*;
 import Card.*;
@@ -31,8 +32,10 @@ public class PuzzleBoard extends JLayeredPane {
     Thread sunThread, zombieThread;
 
     public void reset() {
-        sunThread.interrupt();
-        zombieThread.interrupt();
+        if (sunThread != null)
+            sunThread.interrupt();
+        if (zombieThread != null)
+            zombieThread.interrupt();
     }
 
     class PaintThread implements Runnable {
@@ -180,6 +183,12 @@ public class PuzzleBoard extends JLayeredPane {
         card5.setBounds(319, 7, card5.getCardWidth(), card5.getCardHeight());
         controller.addCard(card5);
         Cardboard.add(card5);
+
+        // plants
+        String[][] map = MapMaker.GetMap(5, 1);
+        for (int i = 0;i < 5; ++i)
+            for (int j = 0;j < 1; ++j)
+                ((PuzzleController) controller).plant(i, j, new Plant().getPlant(map[i][j]));
 
         // animation
         Thread Animation = new Thread(new PaintThread(launchframe));

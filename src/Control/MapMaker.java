@@ -1,9 +1,9 @@
 package Control;
 
-public class MapMaker {
-    public MapMaker(){}
+public abstract class MapMaker {
+    private MapMaker(){}
 
-    private String GetPlant(){
+    private static String GetPlant(){
         int x = (int) (Math.random() * 1000);
         x %= 100;
         if (x <= 23)    return "SunFlower";
@@ -16,7 +16,7 @@ public class MapMaker {
         // 88~99 -> WallNut
     }
 
-    public String [][] GetMap(int n, int m) {
+    public static String [][] GetMap(int n, int m) {
         String[][] ans = new String[n][m];
         for (int i = 0; i < n; i++)
             for (int j = 0; j < m; j++)
