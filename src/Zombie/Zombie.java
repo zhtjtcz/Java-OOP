@@ -92,11 +92,17 @@ public class Zombie extends JLabel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
         img = new ImageIcon("img\\shadow.png");
         g.drawImage(img.getImage(), 70, 115, img.getIconWidth(), img.getIconHeight(), this);
+
         if (state == MOVE) {
             Img = new ImageIcon("img\\" + name + "\\Zombie" + (type + 1) + "\\Frame" + nowPic + ".png");
             g2.drawImage(Img.getImage(), 0, 0, Img.getIconWidth(), Img.getIconHeight(), this);
         } else if (state == ATTACK) {
             Img = new ImageIcon("img\\" + name + "\\ZombieAttack\\Frame" + nowPic + ".png");
+            if (this.name.equals("hzyZombie") && this.type == 1){
+                System.out.println("!");
+                Img = new ImageIcon("img\\" + name + "\\ZombieAttack2\\Frame" + nowPic + ".png");
+            }
+
             g2.drawImage(Img.getImage(), 0, 0, Img.getIconWidth(), Img.getIconHeight(), this);
         } else if (state == LOSTHEAD || state == LOSTHEADATTACK) {
             if (state == LOSTHEAD)
@@ -136,12 +142,12 @@ public class Zombie extends JLabel implements Runnable {
     public Zombie hzyZombie(Controller controller, int row) {
         Zombie tempZombie = new Zombie(controller, "hzyZombie", 400, 0, row, 4700 / 80);
         tempZombie.type = 0;
-        tempZombie.moveSum = 1;
-        tempZombie.attackSum = 1;
-        tempZombie.lostheadSum = 1;
-        tempZombie.lostheadattackSum = 1;
-        tempZombie.dieSum = 8;
-        tempZombie.boomSum = 1;
+        tempZombie.moveSum = tempZombie.sumPic[type];
+        tempZombie.attackSum = 21;
+        tempZombie.lostheadSum = 17;
+        tempZombie.lostheadattackSum = 11;
+        tempZombie.dieSum = 17;
+        tempZombie.boomSum = 17;
         controller.getLayeredPane().add(tempZombie, Integer.valueOf(400));
         return tempZombie;
     }
@@ -190,8 +196,13 @@ public class Zombie extends JLabel implements Runnable {
     public void run() {
         setState(MOVE);
         while (hp > hp2) {
+
+            if (this.name.equals("hzyZombie") && this.hp<200)   this.type = 1;
+
             // MOVE
             while (this.state == MOVE) {
+                if (this.name.equals("hzyZombie") && this.hp<200)   this.type = 1;
+
                 if (findPlant()) {
                     setState(ATTACK);
                     break;
@@ -218,6 +229,8 @@ public class Zombie extends JLabel implements Runnable {
 
             // ATTACK
             while (this.state == ATTACK) {
+                if (this.name.equals("hzyZombie") && this.hp<200)   this.type = 1;
+
                 for (int i = 0; i < 24 && this.state == ATTACK && findPlant(); i++) {
                     getPlant().attacked(1);
                     try {

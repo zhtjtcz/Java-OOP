@@ -33,7 +33,13 @@ public class ZombieProducer implements Runnable {
             try {
                 Thread.sleep((int) (Math.random() * 250) + 5000);
                 int row = (int) (Math.random() * 5);
-                Zombie tempZombie = new Zombie().normalZombie(controller, row);
+                int type = (int) (Math.random() * 50) % 2;
+                Zombie tempZombie;
+                //if (type == 0)
+                //    tempZombie = new Zombie().normalZombie(controller, row);
+                //else
+                    tempZombie = new Zombie().hzyZombie(controller, row);
+
                 controller.addZombie(tempZombie, row);
                 new Thread(tempZombie).start();
             } catch (InterruptedException e) {
