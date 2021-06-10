@@ -27,7 +27,7 @@ public class Controller {
 
     private Plant[][] plants = new Plant[5][9];
     public Plant nowPlant = null;
-    private Map<String, Plant> plantMap = new HashMap<String, Plant>();
+    private Map<String, Plant> plantMap = new HashMap<>();
     // Plants
 
     private JLabel sunCount = new JLabel();
@@ -109,21 +109,6 @@ public class Controller {
         public void mouseMoved(MouseEvent e) {
             setP(e.getPoint());
             topPanel.repaint();
-        }
-
-        public void mousePressed(MouseEvent e) {
-        }
-
-        public void mouseReleased(MouseEvent e) {
-        }
-
-        public void mouseEntered(MouseEvent e) {
-        }
-
-        public void mouseDragged(MouseEvent e) {
-        }
-
-        public void mouseExited(MouseEvent e) {
         }
     }
 
@@ -360,7 +345,6 @@ public class Controller {
     }
 
     public class TopPanel extends JPanel {
-        private static final long serialVersionUID = 1L;
         Graphics2D g2;
 
         public void paintComponent(Graphics g) {
