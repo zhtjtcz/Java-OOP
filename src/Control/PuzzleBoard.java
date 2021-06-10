@@ -183,6 +183,7 @@ public class PuzzleBoard extends JLayeredPane {
             }
         });
 
+
         // cards
         Card card1 = new Card("SunFlower", controller);
         card1.setRectangle(83, 7, card1.getCardWidth(), card1.getCardHeight());
@@ -219,12 +220,12 @@ public class PuzzleBoard extends JLayeredPane {
         Animation.start();
 
         // produce sun
-        sunThread = new Thread(new SunProducer(controller));
-        sunThread.start();
+        // sunThread = new Thread(new SunProducer(controller));
+        // sunThread.start();
 
         // produce zombie
-        zombieThread = new Thread(new ZombieProducer(controller));
-        zombieThread.start();
+        // zombieThread = new Thread(new ZombieProducer(controller));
+        // zombieThread.start();
 
         // mouse img
         JPanel topPanel = controller.getTopPanel();
