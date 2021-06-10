@@ -3,9 +3,9 @@ package Zombie;
 import Control.*;
 
 public class ZombieProducer implements Runnable {
-    private Controller controller;
+    private IController controller;
 
-    public ZombieProducer(Controller controller) {
+    public ZombieProducer(IController controller) {
         this.controller = controller;
     }
 
@@ -21,7 +21,7 @@ public class ZombieProducer implements Runnable {
             e.printStackTrace();
         }
 
-        while (!controller.isRunning) {
+        while (!controller.isRunning()) {
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
@@ -29,7 +29,7 @@ public class ZombieProducer implements Runnable {
             }
         }
 
-        while (controller.isRunning) {
+        while (controller.isRunning()) {
             try {
                 Thread.sleep((int) (Math.random() * 250) + 5000);
                 int row = (int) (Math.random() * 5);

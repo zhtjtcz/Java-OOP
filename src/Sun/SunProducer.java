@@ -3,7 +3,7 @@ package Sun;
 import Control.*;
 
 public class SunProducer implements Runnable {
-    private Controller controller;
+    private IController controller;
 
     public SunProducer(Controller controller) {
         this.controller = controller;
@@ -17,7 +17,7 @@ public class SunProducer implements Runnable {
             e.printStackTrace();
         }
 
-        while (!controller.isRunning) {
+        while (!controller.isRunning()) {
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
@@ -25,7 +25,7 @@ public class SunProducer implements Runnable {
             }
         }
 
-        while (controller.isRunning) {
+        while (controller.isRunning()) {
             try {
                 Thread.sleep((int) (Math.random() * 1000) + 4000);
                 // 4-5s随机生成一个

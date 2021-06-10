@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class Bullet extends JLabel implements Runnable {
     private static final long serialVersionUID = 1L;
-    private Controller controller;
+    private IController controller;
     private ImageIcon img;
     private int x, y, row;
 
@@ -21,7 +21,7 @@ public class Bullet extends JLabel implements Runnable {
 
     public Bullet() { }
 
-    public Bullet(Controller controller, int row, int column) {
+    public Bullet(IController controller, int row, int column) {
         setVisible(true);
         img = new ImageIcon("img\\Bullets\\PeaShooter.png");
         this.controller = controller;

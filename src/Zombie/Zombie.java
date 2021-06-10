@@ -35,12 +35,12 @@ public class Zombie extends JLabel implements Runnable {
     private int headPos;
     private int type;
 
-    private Controller controller;
+    private IController controller;
 
     public Zombie() {
     }
 
-    public Zombie(Controller controller, String name, int hp, int hp2, int row, int v) {
+    public Zombie(IController controller, String name, int hp, int hp2, int row, int v) {
         setVisible(true);
         this.nowPic = 0;
         this.controller = controller;
@@ -126,7 +126,7 @@ public class Zombie extends JLabel implements Runnable {
     // Paint the Zonbie
     // Depend on the situations
 
-    public Zombie normalZombie(Controller controller, int row) {
+    public Zombie normalZombie(IController controller, int row) {
         Zombie tempZombie = new Zombie(controller, "NormalZombie", 200, 70, row, 4700 / 80);
         tempZombie.type = 0;
         tempZombie.moveSum = tempZombie.sumPic[type];
@@ -139,7 +139,7 @@ public class Zombie extends JLabel implements Runnable {
         return tempZombie;
     }
 
-    public Zombie hzyZombie(Controller controller, int row) {
+    public Zombie hzyZombie(IController controller, int row) {
         Zombie tempZombie = new Zombie(controller, "hzyZombie", 400, 0, row, 4700 / 80);
         tempZombie.type = 0;
         tempZombie.moveSum = tempZombie.sumPic[type];
@@ -152,7 +152,7 @@ public class Zombie extends JLabel implements Runnable {
         return tempZombie;
     }
 
-    public Zombie BucketZombie(Controller controller, int row) {
+    public Zombie BucketZombie(IController controller, int row) {
         Zombie tempZombie = new Zombie(controller, "BucketZombie", 800, 0, row, 4700 / 80);
         tempZombie.type = 0;
         tempZombie.moveSum = tempZombie.sumPic[type];

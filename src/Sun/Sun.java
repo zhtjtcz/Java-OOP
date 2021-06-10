@@ -15,7 +15,7 @@ public class Sun extends JLabel implements Runnable {
     private boolean isCollected;
     private int nowPic;
     private static int totPic = 21;
-    private Controller controller;
+    private IController controller;
 
     private double alpha = 100;
 
@@ -29,7 +29,7 @@ public class Sun extends JLabel implements Runnable {
     private int startX, startY, endX, endY;
     // 自然掉落
 
-    public Sun(Controller controller) {
+    public Sun(IController controller) {
         this.x = (int) (Math.random() * 660) + 30;
         this.ymin = this.y = 40;
         this.ymax = (int) (Math.random() * 400) + 130;
@@ -39,7 +39,7 @@ public class Sun extends JLabel implements Runnable {
         controller.getLayeredPane().add(this, new Integer(500));
     }
 
-    public Sun(Controller controller, int r, int c) {
+    public Sun(IController controller, int r, int c) {
         this(controller);
         this.drop = true;
         this.ymin = r * 100 + 55;

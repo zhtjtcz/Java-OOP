@@ -1,6 +1,7 @@
 package Card;
 
 import Control.Controller;
+import Control.IController;
 import Plant.Plant;
 
 import javax.swing.*;
@@ -30,7 +31,7 @@ public class Card extends JLabel implements MouseListener, Runnable {
     private ImageIcon preImg;
     private ImageIcon blurImg;
     private Rectangle rectangle;
-    private Controller controller;
+    private IController controller;
 
     private Map<String, Plant> plantMap;
 
@@ -101,7 +102,7 @@ public class Card extends JLabel implements MouseListener, Runnable {
     public void mouseReleased(MouseEvent e) {
     }
 
-    public Card(String name, Controller controller) {
+    public Card(String name, IController controller) {
         this.controller = controller;
         this.plantMap = controller.getPlantMap();
         this.cardName = name;
@@ -151,7 +152,7 @@ public class Card extends JLabel implements MouseListener, Runnable {
             controller.setBlurImg(this.blurImg);
             controller.setCard(this);
             controller.setSelectedIndex(index);
-            controller.nowPlant = new Plant().getPlant(this.getCardName());
+            controller.setNowPlant(new Plant().getPlant(this.getCardName()));
             inCooling = true;
             isChoosed = true;
             check(0);
@@ -161,15 +162,15 @@ public class Card extends JLabel implements MouseListener, Runnable {
 
     @Override
     public void run() {
-        while (!controller.isRunning) {
+        while (!controller.isRunning()) {
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        while (controller.isRunning) {
-            while (controller.isRunning && (!inCooling || (inCooling && isChoosed))) {
+        while (controller.isRunning()) {
+            while (controller.isRunning() && (!inCooling || (inCooling && isChoosed))) {
                 check(controller.getIntSunCount());
                 try {
                     Thread.sleep(4);
@@ -178,7 +179,7 @@ public class Card extends JLabel implements MouseListener, Runnable {
                 }
             }
             check(controller.getIntSunCount());
-            while (controller.isRunning) {
+            while (controller.isRunning()) {
                 try {
                     Thread.sleep(3);
                 } catch (InterruptedException e) {

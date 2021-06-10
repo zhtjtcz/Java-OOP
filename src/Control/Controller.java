@@ -14,11 +14,17 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
-public class Controller {
+public class Controller implements IController {
     public boolean isRunning = false;
     private int selectedIndex = -1;
     private boolean selectingShovel = false;
     // Basic settings
+
+
+    @Override
+    public boolean isRunning() {
+        return isRunning;
+    }
 
     private LaunchFrame frame;
     private static int cardHeight = 90, cardWidth = 45;
@@ -203,6 +209,10 @@ public class Controller {
         selectedIndex = -1;
         nowPlant = null;
         topPanel.setVisible(false);
+    }
+
+    public void setNowPlant(Plant nowPlant) {
+        this.nowPlant = nowPlant;
     }
 
     public void checkCards() {

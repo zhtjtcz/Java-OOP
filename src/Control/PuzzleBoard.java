@@ -21,7 +21,7 @@ public class PuzzleBoard extends JLayeredPane {
 
     private Shovel shovel;
 
-    Controller controller;
+    IController controller;
 
     private int x = -10;
     private boolean flag = false;
@@ -170,7 +170,7 @@ public class PuzzleBoard extends JLayeredPane {
         shovel = new Shovel(controller);
         shovel.setVisible(true);
         controller.setShovel(shovel);
-        PuzzleBoard.this.add(shovel, new Integer(2));
+        PuzzleBoard.this.add(shovel, Integer.valueOf(2));
         shovel.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 shovel.selected();

@@ -8,10 +8,10 @@ import java.awt.*;
 public class Shovel extends JLabel implements Runnable {
     private static final long serialVersionUID = 1L;
 
-    Controller controller;
+    IController controller;
     ImageIcon shovelImg = new ImageIcon("Img\\Shovel.png");
 
-    public Shovel(Controller controller) {
+    public Shovel(IController controller) {
         this.controller = controller;
     }
 
@@ -26,7 +26,7 @@ public class Shovel extends JLabel implements Runnable {
     }
 
     public void selected() {
-        if (controller.isRunning) {
+        if (controller.isRunning()) {
             if (controller.getCard() == null) {
                 this.setVisible(false);
                 controller.setShovel(true);
@@ -38,14 +38,14 @@ public class Shovel extends JLabel implements Runnable {
 
     @Override
     public void run() {
-        while (!controller.isRunning) {
+        while (!controller.isRunning()) {
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        while (controller.isRunning) {
+        while (controller.isRunning()) {
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {

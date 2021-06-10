@@ -28,7 +28,7 @@ public class Plant extends JLabel implements Runnable {
     private int state;
     private boolean canChange = false;
 
-    private Controller controller;
+    private IController controller;
     private int row, column;
 
     public Plant() {
@@ -83,7 +83,7 @@ public class Plant extends JLabel implements Runnable {
 
     public String getName() { return this.name; }
 
-    public Controller getController() {
+    public IController getController() {
         return controller;
     }
 
