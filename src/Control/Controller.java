@@ -191,7 +191,7 @@ public class Controller {
         plant.setVisible(true);
         plant.setBounds(45 + c * 80, 90 + r * 100, 300, 300);
         plant.setPos(r, c);
-        layeredPane.add(plant, new Integer(50));
+        layeredPane.add(plant, Integer.valueOf(50));
         plants[r][c] = plant;
         new Thread(plant).start();
     }

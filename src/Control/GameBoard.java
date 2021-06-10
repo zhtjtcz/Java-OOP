@@ -119,8 +119,6 @@ public class GameBoard extends JLayeredPane {
         // bg
         panel = new ImageIcon("img\\background1.jpg");
         Panel = new JPanel() {
-            private static final long serialVersionUID = 1L;
-
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.drawImage(panel.getImage(), x, 0, this.getWidth(), this.getHeight(), this);
@@ -134,8 +132,6 @@ public class GameBoard extends JLayeredPane {
         // cardboard
         cardboard = new ImageIcon("img\\SeedBank.png");
         Cardboard = new JPanel() {
-            private static final long serialVersionUID = 1L;
-
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.drawImage(cardboard.getImage(), 0, 0, cardboard.getIconWidth(), cardboard.getIconHeight(), this);
@@ -156,8 +152,6 @@ public class GameBoard extends JLayeredPane {
         // shovel bank
         shovelbank = new ImageIcon("img\\ShovelBank.png");
         ShovelBank = new JPanel() {
-            private static final long serialVersionUID = 1L;
-
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.drawImage(shovelbank.getImage(), 0, 0, shovelbank.getIconWidth(), shovelbank.getIconHeight(), this);
@@ -170,16 +164,10 @@ public class GameBoard extends JLayeredPane {
         shovel = new Shovel(controller);
         shovel.setVisible(true);
         controller.setShovel(shovel);
-        GameBoard.this.add(shovel, new Integer(2));
+        GameBoard.this.add(shovel, Integer.valueOf(2));
         shovel.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 shovel.selected();
-            }
-
-            public void mouseEntered(MouseEvent e) {
-            }
-
-            public void mouseExited(MouseEvent e) {
             }
         });
 
