@@ -64,19 +64,6 @@ public class PuzzleBoard extends JLayeredPane {
 
             shovel.setBounds(458, -5, shovel.getImg().getIconWidth(), shovel.getImg().getIconHeight());
 
-            // 倒计时
-            JLabel label;
-            for (int i = 1; i <= 3; i++)
-                try {
-                    label = new JLabel(new ImageIcon("img\\PrepareGrowPlants" + i + ".png"));
-                    PuzzleBoard.this.add(label, 1);
-                    label.setBounds(250, 200, 300, 200);
-                    Thread.sleep(700);
-                    label.setVisible(false);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
             controller.setRunning();
 
             try {
