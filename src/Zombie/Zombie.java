@@ -122,14 +122,14 @@ public class Zombie extends JLabel implements Runnable {
 
     public Zombie normalZombie(Controller controller, int row) {
         Zombie tempZombie = new Zombie(controller, "NormalZombie", 200, 70, row, 4700 / 80);
-        tempZombie.type = (int) Math.random() * 3;
+        tempZombie.type = 0;
         tempZombie.moveSum = tempZombie.sumPic[type];
         tempZombie.attackSum = 21;
         tempZombie.lostheadSum = 17;
         tempZombie.lostheadattackSum = 11;
         tempZombie.dieSum = 17;
         tempZombie.boomSum = 17;
-        controller.getLayeredPane().add(tempZombie, new Integer(400));
+        controller.getLayeredPane().add(tempZombie, Integer.valueOf(400));
         return tempZombie;
     }
 
@@ -142,7 +142,7 @@ public class Zombie extends JLabel implements Runnable {
         tempZombie.lostheadattackSum = 1;
         tempZombie.dieSum = 8;
         tempZombie.boomSum = 1;
-        controller.getLayeredPane().add(tempZombie, new Integer(400));
+        controller.getLayeredPane().add(tempZombie, Integer.valueOf(400));
         return tempZombie;
     }
 
