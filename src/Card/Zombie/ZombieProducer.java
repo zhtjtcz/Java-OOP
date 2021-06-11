@@ -40,6 +40,7 @@ public class ZombieProducer implements Runnable {
                 //else
                     tempZombie = new Zombie().BucketZombie(controller, row);
 
+                controller.getLayeredPane().add(tempZombie, Integer.valueOf(400));
                 controller.addZombie(tempZombie, row);
                 new Thread(tempZombie).start();
             } catch (InterruptedException e) {

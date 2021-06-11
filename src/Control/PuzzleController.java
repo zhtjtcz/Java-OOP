@@ -34,6 +34,7 @@ public class PuzzleController implements IController {
     private Plant[][] plants = new Plant[5][9];
     public Plant nowPlant = null;
     private Map<String, Plant> plantMap = new HashMap<>();
+    private Map<String, Zombie> zombieMap = new HashMap<>();
     // Plants
 
     private JLabel sunCount = new JLabel();
@@ -169,6 +170,8 @@ public class PuzzleController implements IController {
         return plantMap;
     }
 
+    public Map<String, Zombie> getZombieMap() {return zombieMap;}
+
     public void plantDeath(int row, int column) {
         plants[row][column] = null;
     }
@@ -225,7 +228,7 @@ public class PuzzleController implements IController {
         plantMap.put("Repeater", new Plant().Repeater());
         plantMap.put("CherryBomb", new Plant().CherryBomb());
         plantMap.put("WallNut", new Plant().WallNut());
-        plantMap.put("BucketZombie", new Plant().BucketZombie());
+        zombieMap.put("BucketZombie", new Zombie().BucketZombie(this, 1));
     }
 
     public void addCard(Card card) {

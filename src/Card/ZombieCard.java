@@ -1,7 +1,9 @@
 package Card;
 
+import Card.Zombie.Zombie;
 import Control.IController;
 import Card.Plant.Plant;
+import Control.PuzzleController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +13,7 @@ import java.util.Map;
 
 public class ZombieCard extends Card implements MouseListener, Runnable {
 
+    private Map<String, Zombie> zombieMap;
 
     public ZombieCard(String name, IController controller) {
         super(name, controller);
@@ -21,7 +24,12 @@ public class ZombieCard extends Card implements MouseListener, Runnable {
         this.blurImg = new ImageIcon("img\\" + cardName + "\\Zombie1\\Frame0.png ");
         this.card = cardDark;
         this.inCooling = true;
+        this.zombieMap = ((PuzzleController) controller).getZombieMap();
         this.addMouseListener(this);
+    }
+
+    public boolean sunCountEnough(int SunCount) {
+        return SunCount >= zombieMap.get(this.cardName).getPrice();
     }
 
     @Override
