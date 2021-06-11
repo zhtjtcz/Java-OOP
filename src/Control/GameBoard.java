@@ -184,19 +184,19 @@ public class GameBoard extends JLayeredPane {
         controller.addCard(card2);
         Cardboard.add(card2);
 
-        Card card3 = new Card("Repeater", controller);
+        Card card3 = new Card("WallNut", controller);
         card3.setRectangle(201, 7, card3.getCardWidth(), card3.getCardHeight());
         card3.setBounds(201, 7, card3.getCardWidth(), card3.getCardHeight());
         controller.addCard(card3);
         Cardboard.add(card3);
 
-        Card card4 = new Card("CherryBomb", controller);
+        Card card4 = new Card("Repeater", controller);
         card4.setRectangle(260, 7, card4.getCardWidth(), card4.getCardHeight());
         card4.setBounds(260, 7, card4.getCardWidth(), card4.getCardHeight());
         controller.addCard(card4);
         Cardboard.add(card4);
 
-        Card card5 = new Card("WallNut", controller);
+        Card card5 = new Card("CherryBomb", controller);
         card5.setRectangle(319, 7, card5.getCardWidth(), card5.getCardHeight());
         card5.setBounds(319, 7, card5.getCardWidth(), card5.getCardHeight());
         controller.addCard(card5);
