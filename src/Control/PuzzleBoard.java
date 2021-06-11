@@ -8,6 +8,7 @@ import Card.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Random;
 import javax.swing.*;
 
 public class PuzzleBoard extends JLayeredPane {
@@ -171,10 +172,11 @@ public class PuzzleBoard extends JLayeredPane {
         controller.addCard(card6);
         Cardboard.add(card6);
 
+        int m = new Random().nextInt(3) + 3;
         // plants
-        String[][] map = MapMaker.GetMap(5, 4);
+        String[][] map = MapMaker.GetMap(5, m);
         for (int i = 0;i < 5; ++i)
-            for (int j = 0;j < 4; ++j)
+            for (int j = 0;j < m; ++j)
                 ((PuzzleController) controller).plant(i, j, new Plant().getPlant(map[i][j]));
 
         // animation
