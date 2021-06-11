@@ -44,7 +44,8 @@ public class ZombieProducer implements Runnable {
                 controller.addZombie(tempZombie, row);
                 new Thread(tempZombie).start();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                // e.printStackTrace();
+                break;
             }
         }
 

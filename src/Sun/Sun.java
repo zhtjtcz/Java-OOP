@@ -148,6 +148,8 @@ public class Sun extends JLabel implements Runnable {
 
         Point tempPoint = new Point(x, y);
         if (isCollected) {
+            MusicPlayer play = new MusicPlayer("clicksun.mp3");
+            new Thread(play).start();
             controller.addSunCount(25);
             controller.checkCards();
             int dir = x < 25 ? -1 : 1;

@@ -276,6 +276,12 @@ public class Zombie extends JLabel implements Runnable {
                         }
 
                     this.x -= 1;
+                    if (x<0){
+                        this.state = DIE;
+                        controller.endGame();
+                        setVisible(false);
+                        Thread.currentThread().interrupt();
+                    }
                     this.setBounds(x, y, 400, 300);
                     this.repaint();
                 }

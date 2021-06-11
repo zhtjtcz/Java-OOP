@@ -32,7 +32,8 @@ public class SunProducer implements Runnable {
 
                 new Thread(new Sun(controller)).start();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
+                break;
             }
         }
         Thread.currentThread().interrupt();
