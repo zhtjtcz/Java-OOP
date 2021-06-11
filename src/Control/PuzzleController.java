@@ -33,7 +33,9 @@ public class PuzzleController implements IController {
 
     private Plant[][] plants = new Plant[5][9];
     public Plant nowPlant = null;
+    public Zombie nowZombie = null;
     private Map<String, Plant> plantMap = new HashMap<>();
+    private Map<String, Zombie> zombieMap = new HashMap<>();
     // Plants
 
     private JLabel sunCount = new JLabel();
@@ -103,6 +105,17 @@ public class PuzzleController implements IController {
                         plant(grassR, grassC, nowPlant);
                         reduceSun(nowPlant.getPrice());
                         cancelSelectingCard();
+                    } else if (nowZombie != null && plants[grassR][grassC] == null && !selectingShovel) {
+                        getLayeredPane().add(nowZombie, Integer.valueOf(400));
+                        nowZombie.setRow(grassR);
+                        nowZombie.setCol(50 + (grassC - 1) * 80);
+                        addZombie(nowZombie, grassR);
+                        new Thread(nowZombie).start();
+
+                        reduceSun(nowZombie.getPrice());
+
+                        nowZombie = null;
+                        cancelSelectingCard();
                     } else if (nowPlant == null && plants[grassR][grassC] != null && selectingShovel) {
                         // Remove
                         plants[grassR][grassC].die();
@@ -169,6 +182,8 @@ public class PuzzleController implements IController {
         return plantMap;
     }
 
+    public Map<String, Zombie> getZombieMap() {return zombieMap;}
+
     public void plantDeath(int row, int column) {
         plants[row][column] = null;
     }
@@ -215,6 +230,8 @@ public class PuzzleController implements IController {
         this.nowPlant = nowPlant;
     }
 
+    public void setNowZombie(Zombie zombie) {this.nowZombie = zombie;}
+
     public void checkCards() {
         for (int i = 0; i < cardNum; i++) Cards[i].check(getIntSunCount());
     }
@@ -225,7 +242,7 @@ public class PuzzleController implements IController {
         plantMap.put("Repeater", new Plant().Repeater());
         plantMap.put("CherryBomb", new Plant().CherryBomb());
         plantMap.put("WallNut", new Plant().WallNut());
-        plantMap.put("BucketZombie", new Plant().BucketZombie());
+        zombieMap.put("BucketZombie", new Zombie().BucketZombie(this, 1));
     }
 
     public void addCard(Card card) {
@@ -239,6 +256,7 @@ public class PuzzleController implements IController {
     /* Card.Zombie */
     public void addZombie(Zombie zombie, int row) {
         Zombies.get(row).add(zombie);
+        System.out.println("Add Zombie  " + Zombies.get(row).size() + " " + zombie.getXPos());
     }
 
     public void deleteZombie(Zombie zombie, int row) {

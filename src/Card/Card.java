@@ -2,6 +2,7 @@ package Card;
 
 import Control.IController;
 import Card.Plant.Plant;
+import Control.PuzzleController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -115,8 +116,13 @@ public class Card extends JLabel implements MouseListener, Runnable {
         this.addMouseListener(this);
         this.cardHeight = cardLight.getIconHeight();
         this.cardWidth = cardLight.getIconWidth();
-        this.price = plantMap.get(cardName).getPrice();
-        this.cd = plantMap.get(cardName).getCardCD();
+        if (this.cardName.contains("Zombie")) {
+            this.price = ((PuzzleController) controller).getZombieMap().get(cardName).getPrice();
+            this.cd = ((PuzzleController) controller).getZombieMap().get(cardName).getCardCD();
+        } else {
+            this.price = plantMap.get(cardName).getPrice();
+            this.cd = plantMap.get(cardName).getCardCD();
+        }
     }
 
     public boolean sunCountEnough(int SunCount) {

@@ -18,6 +18,18 @@ public class Zombie extends JLabel implements Runnable {
 
     private String name;
     private int hp = 0, hp2 = 0;
+    // Card
+    private int cardCD;
+    private int price;
+
+    public int getCardCD() {
+        return cardCD;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
     // hp: 总生命值
     private int state = 1;
 
@@ -66,6 +78,15 @@ public class Zombie extends JLabel implements Runnable {
 
     public int getRow() {
         return row;
+    }
+
+    public void setCol(int col) {
+        this.x = col;
+    }
+
+    public void setRow(int row) {
+        this.y = row * 100 + 28;
+        this.row = row;
     }
 
     public void setState(int state) {
@@ -134,7 +155,9 @@ public class Zombie extends JLabel implements Runnable {
         tempZombie.lostheadattackSum = 11;
         tempZombie.dieSum = 17;
         tempZombie.boomSum = 17;
-        controller.getLayeredPane().add(tempZombie, Integer.valueOf(400));
+        tempZombie.cardCD = 1;
+        tempZombie.price = 50;
+//        controller.getLayeredPane().add(tempZombie, Integer.valueOf(400));
         return tempZombie;
     }
 
@@ -147,7 +170,9 @@ public class Zombie extends JLabel implements Runnable {
         tempZombie.lostheadattackSum = 11;
         tempZombie.dieSum = 17;
         tempZombie.boomSum = 17;
-        controller.getLayeredPane().add(tempZombie, Integer.valueOf(400));
+        tempZombie.cardCD = 1;
+        tempZombie.price = 75;
+//        controller.getLayeredPane().add(tempZombie, Integer.valueOf(400));
         return tempZombie;
     }
 
@@ -160,7 +185,9 @@ public class Zombie extends JLabel implements Runnable {
         tempZombie.lostheadattackSum = 11;
         tempZombie.dieSum = 17;
         tempZombie.boomSum = 17;
-        controller.getLayeredPane().add(tempZombie, Integer.valueOf(400));
+        tempZombie.cardCD = 1;
+        tempZombie.price = 150;
+//        controller.getLayeredPane().add(tempZombie, Integer.valueOf(400));
         return tempZombie;
     }
 
