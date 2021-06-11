@@ -181,10 +181,6 @@ public class PuzzleBoard extends JLayeredPane {
         Thread Animation = new Thread(new PaintThread(launchframe));
         Animation.start();
 
-        // produce zombie TODO: Remove it from Puzzle Mode
-        zombieThread = new Thread(new ZombieProducer(controller));
-        zombieThread.start();
-
         // mouse img
         JPanel topPanel = controller.getTopPanel();
         topPanel.setVisible(false);

@@ -131,6 +131,9 @@ public class Plant extends JLabel implements Runnable {
         controller.plantDeath(row, column);
         this.setVisible(false);
         Thread.currentThread().interrupt();
+        if (name.equals("SunFlower") && controller instanceof PuzzleController)
+            for (int i = 0;i < 10; ++i)
+                new Thread(new Sun(getController(), getR(), getC())).start();
     }
 
     @Override
@@ -153,8 +156,15 @@ public class Plant extends JLabel implements Runnable {
     void accumulate() {
         if (this.canChange == false) return;
         if (getName().equals("SunFlower")) {
-            if (Cnow <= 261)
-                this.picChange();
+            if (controller instanceof PuzzleController) {
+                if (Cnow <= 240)
+                    this.picChange();
+                else
+                    Cnow = 0;
+            } else {
+                if (Cnow <= 261)
+                    this.picChange();
+            }
         } else {
             this.picChange();
         }
@@ -180,7 +190,7 @@ public class Plant extends JLabel implements Runnable {
             this.accumulate();
             // System.out.println(getName());
             if (getName().equals("SunFlower")) {
-                if (this.getCnow() >= this.getCD()) {
+                if (this.getCnow() >= this.getCD() && !(controller instanceof PuzzleController)) {
                     this.setCnow(0);
                     new Thread(new Sun(getController(), getR(), getC())).start();
                 }
