@@ -47,6 +47,9 @@ public class Bullet extends JLabel implements Runnable {
         while (true) {
             Zombie tempZombie = controller.getAttackedZombie(row, x - 60);
             if (tempZombie != null) {
+                // MusicPlayer play = new MusicPlayer("splat.mp3");
+                // new Thread(play).start();
+                // Too noise!
                 this.bulletAttack(tempZombie);
                 break;
             }

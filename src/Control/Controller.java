@@ -304,6 +304,7 @@ public class Controller implements IController {
         plantMap.put("WallNut", new Plant().WallNut());
         plantMap.put("Repeater", new Plant().Repeater());
         plantMap.put("CherryBomb", new Plant().CherryBomb());
+		plantMap.put("Potato", new Plant().Potato());
     }
 
     
@@ -424,7 +425,7 @@ public class Controller implements IController {
             for (Zombie zombie : Zombies.get(i)) zombie.endThread();
         }
         this.isRunning = false;
-        frame.reset();
+        frame.reset(0);
     }
     
 	/** 

@@ -330,7 +330,7 @@ public class PuzzleController implements IController {
             for (Zombie zombie : Zombies.get(i)) zombie.endThread();
         }
         this.isRunning = false;
-        frame.reset();
+        frame.reset(0);
     }
     //-----------------------
 

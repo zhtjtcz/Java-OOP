@@ -15,11 +15,13 @@ public class ZombieProducer implements Runnable {
     public void run() {
 
         try {
-            Thread.sleep(10000);
+            Thread.sleep(20000);
             // 开局10s无生成
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        MusicPlayer play = new MusicPlayer("a-lot-of.mp3");
+        new Thread(play).start();
 
         while (!controller.isRunning()) {
             try {
@@ -28,6 +30,7 @@ public class ZombieProducer implements Runnable {
                 e.printStackTrace();
             }
         }
+
 
         while (controller.isRunning()) {
             try {

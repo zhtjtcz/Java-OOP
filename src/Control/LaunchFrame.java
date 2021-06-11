@@ -13,11 +13,21 @@ public class LaunchFrame extends JFrame {
     private GameBoard gameboard;
     private PuzzleBoard puzzleboard;
 
-    public void reset() {
-        if (gameboard != null)
+    public void reset(int x){
+        if (gameboard != null){
             gameboard.reset();
-        if (puzzleboard != null)
+            // System.out.println("!!");
+        }
+        else if (puzzleboard != null){
             puzzleboard.reset();
+            // System.out.println("!!!");
+        }
+        /*
+        if (x == 0)
+            new LoseBoard();
+        else
+            new WinBoard();
+        */
         System.exit(0);
     }
 

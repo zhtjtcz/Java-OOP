@@ -179,6 +179,7 @@ public class Plant extends JLabel implements Runnable {
             case "Repeater" -> new Plant().Repeater();
             case "CherryBomb" -> new Plant().CherryBomb();
             case "WallNut" -> new Plant().WallNut();
+            case "Potato" -> new Plant().Potato();
             default -> null;
         };
     }
@@ -272,6 +273,14 @@ public class Plant extends JLabel implements Runnable {
     }
 
     public Plant WallNut() {
+        Plant tempPlant = new Plant("WallNut", 50, 0, 4000, 16, true);
+        tempPlant.CD = 1000000;
+        tempPlant.cardCD = 8000;
+        tempPlant.sleepTime = 90;
+        return tempPlant;
+    }
+    
+    public Plant Potato() {
         Plant tempPlant = new Plant("WallNut", 50, 0, 4000, 16, true);
         tempPlant.CD = 1000000;
         tempPlant.cardCD = 8000;
