@@ -384,9 +384,9 @@ public class PuzzleController implements IController {
                 int c = (mouseP.x - 40) / 80;
                 int r = (mouseP.y - 90) / 100;
                 if (isOnGrass(r, c) && plants[r][c] == null) {
-                    g2.drawImage(blurImg.getImage(), 40 + c * 80, 90 + r * 100, this);
+                    g2.drawImage(blurImg.getImage(), -30 + c * 80, 30 + r * 100, this);
                 }
-                g2.drawImage(preImg.getImage(), mouseP.x - 35, mouseP.y - 40, preImg.getIconWidth(),
+                g2.drawImage(preImg.getImage(), mouseP.x - 90, mouseP.y - 140, preImg.getIconWidth(),
                         preImg.getIconWidth(), this);
             }
         }
