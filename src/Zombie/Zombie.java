@@ -37,8 +37,7 @@ public class Zombie extends JLabel implements Runnable {
 
     private IController controller;
 
-    public Zombie() {
-    }
+    public Zombie() { }
 
     public Zombie(IController controller, String name, int hp, int hp2, int row, int v) {
         setVisible(true);

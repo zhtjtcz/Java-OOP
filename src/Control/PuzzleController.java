@@ -225,6 +225,7 @@ public class PuzzleController implements IController {
         plantMap.put("Repeater", new Plant().Repeater());
         plantMap.put("CherryBomb", new Plant().CherryBomb());
         plantMap.put("WallNut", new Plant().WallNut());
+        plantMap.put("BucketZombie", new Plant().BucketZombie());
     }
 
     public void addCard(Card card) {

@@ -163,25 +163,15 @@ public class Plant extends JLabel implements Runnable {
     // Accelorator the CD time
 
     public Plant getPlant(String name) {
-        Plant newPlant = null;
-        switch (name) {
-            case "SunFlower":
-                newPlant = new Plant().SunFlower();
-                break;
-            case "PeaShooter":
-                newPlant = new Plant().PeaShooter();
-                break;
-            case "Repeater":
-                newPlant = new Plant().Repeater();
-                break;
-            case "CherryBomb":
-                newPlant = new Plant().CherryBomb();
-                break;
-            case "WallNut":
-                newPlant = new Plant().WallNut();
-                break;
-        }
-        return newPlant;
+        return switch (name) {
+            case "SunFlower" -> new Plant().SunFlower();
+            case "PeaShooter" -> new Plant().PeaShooter();
+            case "Repeater" -> new Plant().Repeater();
+            case "CherryBomb" -> new Plant().CherryBomb();
+            case "WallNut" -> new Plant().WallNut();
+            case "BucketZombie" -> new Plant().BucketZombie();
+            default -> null;
+        };
     }
 
     @Override
@@ -274,6 +264,14 @@ public class Plant extends JLabel implements Runnable {
 
     public Plant WallNut() {
         Plant tempPlant = new Plant("WallNut", 50, 0, 4000, 16, true);
+        tempPlant.CD = 1000000;
+        tempPlant.cardCD = 8000;
+        tempPlant.sleepTime = 90;
+        return tempPlant;
+    }
+
+    public Plant BucketZombie() {
+        Plant tempPlant = new Plant("BucketZombie", 150, 0, 4000, 16, true);
         tempPlant.CD = 1000000;
         tempPlant.cardCD = 8000;
         tempPlant.sleepTime = 90;

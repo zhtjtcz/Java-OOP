@@ -166,23 +166,11 @@ public class PuzzleBoard extends JLayeredPane {
         controller.addCard(card2);
         Cardboard.add(card2);
 
-        Card card3 = new Card("Repeater", controller);
-        card3.setRectangle(201, 7, card3.getCardWidth(), card3.getCardHeight());
-        card3.setBounds(201, 7, card3.getCardWidth(), card3.getCardHeight());
-        controller.addCard(card3);
-        Cardboard.add(card3);
-
-        Card card4 = new Card("CherryBomb", controller);
-        card4.setRectangle(260, 7, card4.getCardWidth(), card4.getCardHeight());
-        card4.setBounds(260, 7, card4.getCardWidth(), card4.getCardHeight());
-        controller.addCard(card4);
-        Cardboard.add(card4);
-
-        Card card5 = new Card("WallNut", controller);
-        card5.setRectangle(319, 7, card5.getCardWidth(), card5.getCardHeight());
-        card5.setBounds(319, 7, card5.getCardWidth(), card5.getCardHeight());
-        controller.addCard(card5);
-        Cardboard.add(card5);
+        Card card6 = new Card("BucketZombie", controller);
+        card6.setRectangle(201, 7, card6.getCardWidth(), card6.getCardHeight());
+        card6.setBounds(201, 7, card6.getCardWidth(), card6.getCardHeight());
+        controller.addCard(card6);
+        Cardboard.add(card6);
 
         // plants
         String[][] map = MapMaker.GetMap(5, 1);

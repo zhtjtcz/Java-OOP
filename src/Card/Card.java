@@ -147,6 +147,7 @@ public class Card extends JLabel implements MouseListener, Runnable {
 
     public void selected() {
         if (!inCooling && controller.getIntSunCount() >= this.getPrice()) {
+            System.out.println("Selected");
             controller.getTopPanel().setVisible(true);
             controller.setPreImg(this.preImg);
             controller.setBlurImg(this.blurImg);
