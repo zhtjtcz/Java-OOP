@@ -10,31 +10,31 @@ import java.awt.event.MouseListener;
 import java.util.Map;
 
 public class Card extends JLabel implements MouseListener, Runnable {
-    private static final long serialVersionUID = 1L;
-    private boolean inCooling;
-    private boolean isChoosed;
-    private int cd;
-    private int totTime;
+    protected static final long serialVersionUID = 1L;
+    protected boolean inCooling;
+    protected boolean isChoosed;
+    protected int cd;
+    protected int totTime;
     // CD and cooling
 
-    private String cardName;
-    private int price;
-    private int cardWidth;
-    private int cardHeight;
+    protected String cardName;
+    protected int price;
+    protected int cardWidth;
+    protected int cardHeight;
 
-    private ImageIcon card;
-    private ImageIcon cardLight;
-    private ImageIcon cardDark;
-    private ImageIcon cardCooling;
+    protected ImageIcon card;
+    protected ImageIcon cardLight;
+    protected ImageIcon cardDark;
+    protected ImageIcon cardCooling;
 
-    private ImageIcon preImg;
-    private ImageIcon blurImg;
-    private Rectangle rectangle;
-    private IController controller;
+    protected ImageIcon preImg;
+    protected ImageIcon blurImg;
+    protected Rectangle rectangle;
+    protected IController controller;
 
-    private Map<String, Plant> plantMap;
+    protected Map<String, Plant> plantMap;
 
-    private int index;
+    protected int index;
 
     public int getIndex() {
         return index;
