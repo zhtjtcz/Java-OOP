@@ -39,7 +39,7 @@ public class ZombieProducer implements Runnable {
                 //    tempZombie = new Card.Zombie().normalZombie(controller, row);
                 //else
                     tempZombie = new Zombie().BucketZombie(controller, row);
-
+                System.out.println(row);
                 controller.getLayeredPane().add(tempZombie, Integer.valueOf(400));
                 controller.addZombie(tempZombie, row);
                 new Thread(tempZombie).start();

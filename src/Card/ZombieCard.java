@@ -32,6 +32,21 @@ public class ZombieCard extends Card implements MouseListener, Runnable {
         return SunCount >= zombieMap.get(this.cardName).getPrice();
     }
 
+    public void selected() {
+        if (!inCooling && controller.getIntSunCount() >= this.getPrice()) {
+            System.out.println("Selected Zombie");
+            controller.getTopPanel().setVisible(true);
+            controller.setPreImg(this.preImg);
+            controller.setBlurImg(this.blurImg);
+            controller.setCard(this);
+            controller.setSelectedIndex(index);
+            ((PuzzleController) controller).setNowZombie(new Zombie().BucketZombie(controller, 1));
+            inCooling = true;
+            isChoosed = true;
+            check(0);
+        }
+    }
+
     @Override
     public void run() {
         while (!controller.isRunning()) {

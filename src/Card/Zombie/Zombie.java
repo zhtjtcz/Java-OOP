@@ -80,6 +80,10 @@ public class Zombie extends JLabel implements Runnable {
         return row;
     }
 
+    public void setCol(int col) {
+        this.x = col;
+    }
+
     public void setRow(int row) {
         this.y = row * 100 + 28;
         this.row = row;

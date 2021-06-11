@@ -33,6 +33,7 @@ public class PuzzleController implements IController {
 
     private Plant[][] plants = new Plant[5][9];
     public Plant nowPlant = null;
+    public Zombie nowZombie = null;
     private Map<String, Plant> plantMap = new HashMap<>();
     private Map<String, Zombie> zombieMap = new HashMap<>();
     // Plants
@@ -103,6 +104,19 @@ public class PuzzleController implements IController {
                         // Card.Plant
                         plant(grassR, grassC, nowPlant);
                         reduceSun(nowPlant.getPrice());
+                        cancelSelectingCard();
+                    } else if (nowZombie != null && plants[grassR][grassC] == null && !selectingShovel) {
+                        //getLayeredPane().add(nowZombie, Integer.valueOf(400));
+                        //tempZombie = new Zombie().BucketZombie(this, grassR);
+                        getLayeredPane().add(nowZombie, Integer.valueOf(400));
+                        nowZombie.setRow(grassR);
+                        nowZombie.setCol(50 + (grassC - 1) * 80);
+                        addZombie(nowZombie, grassR);
+                        new Thread(nowZombie).start();
+
+                        reduceSun(nowZombie.getPrice());
+
+                        nowZombie = null;
                         cancelSelectingCard();
                     } else if (nowPlant == null && plants[grassR][grassC] != null && selectingShovel) {
                         // Remove
@@ -218,6 +232,8 @@ public class PuzzleController implements IController {
         this.nowPlant = nowPlant;
     }
 
+    public void setNowZombie(Zombie zombie) {this.nowZombie = zombie;}
+
     public void checkCards() {
         for (int i = 0; i < cardNum; i++) Cards[i].check(getIntSunCount());
     }
@@ -242,6 +258,7 @@ public class PuzzleController implements IController {
     /* Card.Zombie */
     public void addZombie(Zombie zombie, int row) {
         Zombies.get(row).add(zombie);
+        System.out.println("Add Zombie  " + Zombies.get(row).size() + " " + zombie.getXPos());
     }
 
     public void deleteZombie(Zombie zombie, int row) {
