@@ -177,7 +177,7 @@ public class Zombie extends JLabel implements Runnable {
     }
 
     public Zombie hzyZombie(IController controller, int row) {
-        Zombie tempZombie = new Zombie(controller, "hzyZombie", 400, 0, row, 4700 / 80);
+        Zombie tempZombie = new Zombie(controller, "hzyZombie", 370, 180, row, 4700 / 80);
         tempZombie.type = 0;
         tempZombie.moveSum = tempZombie.sumPic[type];
         tempZombie.attackSum = 21;
@@ -192,7 +192,7 @@ public class Zombie extends JLabel implements Runnable {
     }
 
     public Zombie BucketZombie(IController controller, int row) {
-        Zombie tempZombie = new Zombie(controller, "BucketZombie", 800, 0, row, 4700 / 80);
+        Zombie tempZombie = new Zombie(controller, "BucketZombie", 1100, 180, row, 4700 / 80);
         tempZombie.type = 0;
         tempZombie.moveSum = tempZombie.sumPic[type];
         tempZombie.attackSum = 21;
@@ -297,7 +297,8 @@ public class Zombie extends JLabel implements Runnable {
                 if (this.name.equals("BucketZombie") && this.hp<200)    this.type = 1;
 
                 for (int i = 0; i < 24 && this.state == ATTACK && findPlant(); i++) {
-                    getPlant().attacked(1);
+                    if (getPlant() != null)
+                        getPlant().attacked(1);
                     try {
                         Thread.sleep(5);
                     } catch (InterruptedException e) {
