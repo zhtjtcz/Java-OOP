@@ -40,7 +40,8 @@ public class ZombieCard extends Card implements MouseListener, Runnable {
             controller.setBlurImg(this.blurImg);
             controller.setCard(this);
             controller.setSelectedIndex(index);
-            ((PuzzleController) controller).setNowZombie(new Zombie().BucketZombie(controller, 1));
+//            ((PuzzleController) controller).setNowZombie(new Zombie().BucketZombie(controller, 1));
+            ((PuzzleController) controller).setNowZombie(new Zombie(controller).getZombie(getCardName()));
             inCooling = true;
             isChoosed = true;
             check(0);

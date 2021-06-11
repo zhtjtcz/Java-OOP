@@ -243,6 +243,8 @@ public class PuzzleController implements IController {
         plantMap.put("CherryBomb", new Plant().CherryBomb());
         plantMap.put("WallNut", new Plant().WallNut());
         zombieMap.put("BucketZombie", new Zombie().BucketZombie(this, 1));
+        zombieMap.put("hzyZombie", new Zombie().hzyZombie(this, 1));
+        zombieMap.put("NormalZombie", new Zombie().NormalZombie(this, 1));
     }
 
     public void addCard(Card card) {

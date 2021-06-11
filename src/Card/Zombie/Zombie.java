@@ -51,6 +51,10 @@ public class Zombie extends JLabel implements Runnable {
 
     public Zombie() { }
 
+    public Zombie(IController controller) {
+        this.controller = controller;
+    }
+
     public Zombie(IController controller, String name, int hp, int hp2, int row, int v) {
         setVisible(true);
         this.nowPic = 0;
@@ -146,7 +150,18 @@ public class Zombie extends JLabel implements Runnable {
     // Paint the Zonbie
     // Depend on the situations
 
-    public Zombie normalZombie(IController controller, int row) {
+
+    public Zombie getZombie(String name) {
+        return switch (name){
+            case "NormalZombie" -> NormalZombie(controller, 1);
+            case "hzyZombie" -> hzyZombie(controller, 1);
+            case "BucketZombie" -> BucketZombie(controller, 1);
+            default -> null;
+        };
+    }
+
+
+    public Zombie NormalZombie(IController controller, int row) {
         Zombie tempZombie = new Zombie(controller, "NormalZombie", 200, 70, row, 4700 / 80);
         tempZombie.type = 0;
         tempZombie.moveSum = tempZombie.sumPic[type];

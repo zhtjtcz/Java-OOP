@@ -153,21 +153,21 @@ public class PuzzleBoard extends JLayeredPane {
 
 
 //        // cards
-//        Card card1 = new Card("SunFlower", controller);
-//        card1.setRectangle(83, 7, card1.getCardWidth(), card1.getCardHeight());
-//        card1.setBounds(83, 7, card1.getCardWidth(), card1.getCardHeight());
-//        controller.addCard(card1);
-//        Cardboard.add(card1);
-//
-//        Card card2 = new Card("PeaShooter", controller);
-//        card2.setRectangle(142, 7, card2.getCardWidth(), card2.getCardHeight());
-//        card2.setBounds(142, 7, card2.getCardWidth(), card2.getCardHeight());
-//        controller.addCard(card2);
-//        Cardboard.add(card2);
+        ZombieCard card1 = new ZombieCard("NormalZombie", controller);
+        card1.setRectangle(83, 7, card1.getCardWidth(), card1.getCardHeight());
+        card1.setBounds(83, 7, card1.getCardWidth(), card1.getCardHeight());
+        controller.addCard(card1);
+        Cardboard.add(card1);
+
+        ZombieCard card2 = new ZombieCard("hzyZombie", controller);
+        card2.setRectangle(142, 7, card2.getCardWidth(), card2.getCardHeight());
+        card2.setBounds(142, 7, card2.getCardWidth(), card2.getCardHeight());
+        controller.addCard(card2);
+        Cardboard.add(card2);
 
         ZombieCard card6 = new ZombieCard("BucketZombie", controller);
-        card6.setRectangle(83, 7, card6.getCardWidth(), card6.getCardHeight());
-        card6.setBounds(83, 7, card6.getCardWidth(), card6.getCardHeight());
+        card6.setRectangle(201, 7, card6.getCardWidth(), card6.getCardHeight());
+        card6.setBounds(201, 7, card6.getCardWidth(), card6.getCardHeight());
         controller.addCard(card6);
         Cardboard.add(card6);
 
