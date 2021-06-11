@@ -2,12 +2,9 @@ package Card;
 
 import Card.Zombie.Zombie;
 import Control.IController;
-import Card.Plant.Plant;
 import Control.PuzzleController;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Map;
 
