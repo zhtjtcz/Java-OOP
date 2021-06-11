@@ -1,8 +1,7 @@
 package Card;
 
-import Control.Controller;
 import Control.IController;
-import Plant.Plant;
+import Card.Plant.Plant;
 
 import javax.swing.*;
 import java.awt.*;

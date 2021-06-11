@@ -1,10 +1,9 @@
 package Control;
 
-import Plant.Plant;
-import Zombie.*;
+import Card.Plant.Plant;
+import Card.Zombie.*;
 import Shovel.*;
 import Card.*;
-import Sun.*;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;

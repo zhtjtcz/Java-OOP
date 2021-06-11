@@ -1,8 +1,8 @@
 package Control;
 
 import Card.*;
-import Plant.*;
-import Zombie.*;
+import Card.Plant.*;
+import Card.Zombie.*;
 import Shovel.*;
 // Import all element
 
@@ -96,10 +96,10 @@ public class PuzzleController implements IController {
             if (e.getButton() == MouseEvent.BUTTON1) {// left click
                 int x = p.x, y = p.y;
                 int grassR = (y - cardHeight) / tileHeight, grassC = (x - cardWidth) / tileWidth;
-                // Plant or displant
+                // Card.Plant or displant
                 if (isOnGrass(grassR, grassC)) {
                     if (nowPlant != null && plants[grassR][grassC] == null && !selectingShovel) {
-                        // Plant
+                        // Card.Plant
                         plant(grassR, grassC, nowPlant);
                         reduceSun(nowPlant.getPrice());
                         cancelSelectingCard();
@@ -160,7 +160,7 @@ public class PuzzleController implements IController {
     }
     //-----------------------
 
-    /* Plant */
+    /* Card.Plant */
     public Plant[][] getPlants() {
         return this.plants;
     }
@@ -236,7 +236,7 @@ public class PuzzleController implements IController {
     }
     //-----------------------
 
-    /* Zombie */
+    /* Card.Zombie */
     public void addZombie(Zombie zombie, int row) {
         Zombies.get(row).add(zombie);
     }

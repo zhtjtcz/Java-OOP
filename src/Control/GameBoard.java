@@ -1,6 +1,6 @@
 package Control;
 
-import Zombie.*;
+import Card.Zombie.*;
 import Shovel.*;
 import Card.*;
 import Sun.*;

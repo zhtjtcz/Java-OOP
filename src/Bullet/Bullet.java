@@ -1,7 +1,7 @@
 package Bullet;
 
 import Control.*;
-import Zombie.*;
+import Card.Zombie.*;
 
 import javax.swing.*;
 import java.awt.*;

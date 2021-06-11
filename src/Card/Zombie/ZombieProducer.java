@@ -1,4 +1,4 @@
-package Zombie;
+package Card.Zombie;
 
 import Control.*;
 
@@ -36,7 +36,7 @@ public class ZombieProducer implements Runnable {
                 int type = (int) (Math.random() * 50) % 2;
                 Zombie tempZombie;
                 //if (type == 0)
-                //    tempZombie = new Zombie().normalZombie(controller, row);
+                //    tempZombie = new Card.Zombie().normalZombie(controller, row);
                 //else
                     tempZombie = new Zombie().BucketZombie(controller, row);
 

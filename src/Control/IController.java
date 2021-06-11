@@ -1,9 +1,9 @@
 package Control;
 
 import Card.Card;
-import Plant.Plant;
+import Card.Plant.Plant;
 import Shovel.Shovel;
-import Zombie.Zombie;
+import Card.Zombie.Zombie;
 
 import javax.swing.*;
 import java.util.Map;

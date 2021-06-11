@@ -1,7 +1,7 @@
-package Zombie;
+package Card.Zombie;
 
 import Control.*;
-import Plant.*;
+import Card.Plant.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -93,7 +93,7 @@ public class Zombie extends JLabel implements Runnable {
         g.drawImage(img.getImage(), 70, 115, img.getIconWidth(), img.getIconHeight(), this);
 
         if (state == MOVE) {
-            Img = new ImageIcon("img\\" + name + "\\Zombie" + (type + 1) + "\\Frame" + nowPic + ".png");
+            Img = new ImageIcon("img\\" + name + "\\Card.Zombie" + (type + 1) + "\\Frame" + nowPic + ".png");
             g2.drawImage(Img.getImage(), 0, 0, Img.getIconWidth(), Img.getIconHeight(), this);
         } else if (state == ATTACK) {
             Img = new ImageIcon("img\\" + name + "\\ZombieAttack\\Frame" + nowPic + ".png");

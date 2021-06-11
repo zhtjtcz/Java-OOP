@@ -1,4 +1,4 @@
-package Plant;
+package Card.Plant;
 
 import Control.*;
 import Sun.*;
@@ -21,7 +21,7 @@ public class Plant extends JLabel implements Runnable {
 
     private int pic = 0;
     private int SumPic = 0;
-    // Plant picture
+    // Card.Plant picture
 
     protected int sleepTime;
     private int cardCD;
