@@ -43,12 +43,14 @@ public interface IController {
     // 僵尸
     Zombie getAttackedZombie(int row, int x);
     boolean haveZombie(int row);
+    boolean haveaZombie(int row, int column);
     void deleteZombie(Zombie zombie, int row);
     void addZombie(Zombie zombie, int row);
 
     // 植物
     void plantDeath(int row, int column);
     void boom(int row, int column);
+    void Potatoboom(int row, int column);
     Plant[][] getPlants();
 
 }

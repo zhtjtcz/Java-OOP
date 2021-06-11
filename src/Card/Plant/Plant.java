@@ -239,6 +239,13 @@ public class Plant extends JLabel implements Runnable {
                     }
                     break;
                 }
+            } else if (getName().equals("Potato")){
+                if (this.state == 1){
+                    if (controller.haveaZombie(row, column)){
+                        controller.Potatoboom(row, column);
+                        break;
+                    }
+                }
             }
 
             this.repaint();
@@ -295,7 +302,7 @@ public class Plant extends JLabel implements Runnable {
     }
     
     public Plant Potato() {
-        Plant tempPlant = new Plant("Potato", 50, 0, 4000, 9, true);
+        Plant tempPlant = new Plant("Potato", 50, 0, 300, 9, true);
         tempPlant.CD = 10000 / 90;
         tempPlant.cardCD = 8000;
         tempPlant.sleepTime = 90;

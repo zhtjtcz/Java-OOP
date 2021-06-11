@@ -300,10 +300,27 @@ public class PuzzleController implements IController {
                 }
             }
     }
+    
+    public void Potatoboom(int row, int column){
+        MusicPlayer play = new MusicPlayer("potato_mine.mp3");
+        new Thread(play).start();
+        for (Zombie tempZombie : Zombies.get(row)) {
+            int c = tempZombie.getColumn();
+            if (c == column) tempZombie.boom();
+        }
+    }
 
     public boolean haveZombie(int row) {
         for (Zombie zombie : Zombies.get(row))
             if (zombie.getXPos() < 720) return true;
+        return false;
+    }
+    
+    public boolean haveaZombie(int row, int column){
+        for (Zombie zombie : Zombies.get(row)){
+            int c = zombie.getColumn();
+            if (c == column) return true;
+        }
         return false;
     }
     //-----------------------
