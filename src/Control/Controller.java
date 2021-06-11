@@ -222,9 +222,9 @@ public class Controller implements IController {
     public void setCardMap() {
         plantMap.put("SunFlower", new Plant().SunFlower());
         plantMap.put("PeaShooter", new Plant().PeaShooter());
+        plantMap.put("WallNut", new Plant().WallNut());
         plantMap.put("Repeater", new Plant().Repeater());
         plantMap.put("CherryBomb", new Plant().CherryBomb());
-        plantMap.put("WallNut", new Plant().WallNut());
     }
 
     public void addCard(Card card) {
