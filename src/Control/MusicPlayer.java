@@ -15,6 +15,10 @@ public class MusicPlayer implements Runnable {
 		this.name = "music\\" + name;
 	}
 	
+	
+	/** 
+	 * @throws Exception
+	 */
 	public void Play() throws Exception{
 		File mp3 = new File(this.name);
 		FileInputStream fis = new FileInputStream(mp3);

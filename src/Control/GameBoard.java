@@ -87,6 +87,8 @@ public class GameBoard extends JLayeredPane {
 
             // 倒计时
             JLabel label;
+            MusicPlayer play = new MusicPlayer("Ready.mp3");
+            new Thread(play).start();
             for (int i = 1; i <= 3; i++)
                 try {
                     label = new JLabel(new ImageIcon("img\\PrepareGrowPlants" + i + ".png"));
@@ -97,7 +99,8 @@ public class GameBoard extends JLayeredPane {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
+            play = new MusicPlayer("BackGroundMusic.mp3");
+            new Thread(play).start();
             controller.setRunning();
 
             try {

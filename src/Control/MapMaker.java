@@ -3,7 +3,11 @@ package Control;
 public abstract class MapMaker {
     private MapMaker(){}
 
-    private static String GetPlant(){
+    
+	/** 
+	 * @return String 按概率生成一种植物
+	 */
+	private static String GetPlant(){
         int x = (int) (Math.random() * 1000);
         x %= 100;
         if (x <= 23)    return "SunFlower";
@@ -16,7 +20,13 @@ public abstract class MapMaker {
         // 88~99 -> WallNut
     }
 
-    public static String [][] GetMap(int n, int m) {
+    
+	/** 
+	 * @param n 地图行数
+	 * @param m 地图列数
+	 * @return String[][] 生成的植物,以名称方式填充
+	 */
+	public static String [][] GetMap(int n, int m) {
         String[][] ans = new String[n][m];
         for (int i = 0; i < n; i++)
             for (int j = 0; j < m; j++)
