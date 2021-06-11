@@ -205,6 +205,12 @@ public class GameBoard extends JLayeredPane {
         controller.addCard(card5);
         Cardboard.add(card5);
 
+		Card card6 = new Card("Potato", controller);
+        card6.setRectangle(378, 7, card6.getCardWidth(), card6.getCardHeight());
+        card6.setBounds(378, 7, card6.getCardWidth(), card6.getCardHeight());
+        controller.addCard(card6);
+        Cardboard.add(card6);
+
         // animation
         Thread Animation = new Thread(new PaintThread(launchframe));
         Animation.start();

@@ -98,6 +98,19 @@ public class Plant extends JLabel implements Runnable {
     // Getter and setter
 
     public void picChange() {
+        if (this.name.equals("Potato")){
+            if (getCnow() >= getCD() && this.state == 0){
+                this.state = 1;
+                pic = 0;
+            }
+            if (this.state == 0){
+                img = new ImageIcon("img\\" + this.name + "\\" + "sleep.png");
+            }   else {
+                pic = (pic + 1) % SumPic;
+                img = new ImageIcon("img\\" + this.name + "\\" + this.name + "_" + pic + ".png");
+            }
+            return;
+        }
         pic = (pic + 1) % SumPic;
         img = new ImageIcon("img\\" + this.name + "\\" + this.name + "_" + pic + ".png");
         if (this.getName().equals("WallNut"))
@@ -141,9 +154,10 @@ public class Plant extends JLabel implements Runnable {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         // The shadow under the plants
-
+        
         ImageIcon shadow = new ImageIcon("img\\shadow.png");
-        g2.drawImage(shadow.getImage(), -11, 45, shadow.getIconWidth(), shadow.getIconHeight(), null);
+        if (!this.name.equals("Potato"))
+            g2.drawImage(shadow.getImage(), -11, 45, shadow.getIconWidth(), shadow.getIconHeight(), null);
         g.drawImage(img.getImage(), 0, 0, img.getIconWidth(), img.getIconHeight(), null);
         if (getName().equals("SunFlower")) {
             if (this.getCnow() > 261) {
@@ -154,7 +168,7 @@ public class Plant extends JLabel implements Runnable {
     }
 
     void accumulate() {
-        if (this.canChange == false) return;
+        if (!this.canChange) return;
         if (getName().equals("SunFlower")) {
             if (controller instanceof PuzzleController) {
                 if (Cnow <= 240)
@@ -281,8 +295,8 @@ public class Plant extends JLabel implements Runnable {
     }
     
     public Plant Potato() {
-        Plant tempPlant = new Plant("WallNut", 50, 0, 4000, 16, true);
-        tempPlant.CD = 1000000;
+        Plant tempPlant = new Plant("Potato", 50, 0, 4000, 9, true);
+        tempPlant.CD = 10000 / 90;
         tempPlant.cardCD = 8000;
         tempPlant.sleepTime = 90;
         return tempPlant;
