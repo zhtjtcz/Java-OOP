@@ -16,15 +16,15 @@ public class LaunchFrame extends JFrame {
     public void reset(int x){
         if (gameboard != null){
             gameboard.reset();
-             System.out.println("!!");
         }
         if (puzzleboard != null){
             puzzleboard.reset();
-            System.out.println("!!!");
         }
-        this.setContentPane(layeredPane);
-        layeredPane.setVisible(true);
-        layeredPane.repaint();
+        synchronized (layeredPane) {
+            this.setContentPane(layeredPane);
+            layeredPane.setVisible(true);
+            layeredPane.repaint();
+        }
         /*
         if (x == 0)
             new LoseBoard();

@@ -340,12 +340,14 @@ public class PuzzleController implements IController {
 
     public void endGame() {
         System.out.println("You Lost.");
-        for (int i = 0; i < numRow; i++) {
-            for (int j = 0; j < numCol; j++)
-                if (plants[i][j] != null)
-                    plants[i][j].die();
+        synchronized (Zombies) {
+            for (int i = 0; i < numRow; i++) {
+                for (int j = 0; j < numCol; j++)
+                    if (plants[i][j] != null)
+                        plants[i][j].die();
 
-            for (Zombie zombie : Zombies.get(i)) zombie.endThread();
+                for (Zombie zombie : Zombies.get(i)) zombie.endThread();
+            }
         }
         this.isRunning = false;
         frame.reset(0);
