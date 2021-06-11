@@ -105,7 +105,7 @@ public class PuzzleController implements IController {
                         plant(grassR, grassC, nowPlant);
                         reduceSun(nowPlant.getPrice());
                         cancelSelectingCard();
-                    } else if (nowZombie != null && plants[grassR][grassC] == null && !selectingShovel) {
+                    } else if (nowZombie != null && plants[grassR][grassC] == null && grassC >= 5 && !selectingShovel) {
                         getLayeredPane().add(nowZombie, Integer.valueOf(400));
                         nowZombie.setRow(grassR);
                         nowZombie.setCol(50 + (grassC - 1) * 80);
@@ -383,7 +383,7 @@ public class PuzzleController implements IController {
             if (mouseP != null) {
                 int c = (mouseP.x - 40) / 80;
                 int r = (mouseP.y - 90) / 100;
-                if (isOnGrass(r, c) && plants[r][c] == null) {
+                if (isOnGrass(r, c) && plants[r][c] == null && c >= 5) {
                     g2.drawImage(blurImg.getImage(), -30 + c * 80, 30 + r * 100, this);
                 }
                 g2.drawImage(preImg.getImage(), mouseP.x - 90, mouseP.y - 140, preImg.getIconWidth(),
