@@ -243,6 +243,8 @@ public class Controller implements IController {
         plant.setVisible(true);
         plant.setBounds(45 + c * 80, 90 + r * 100, 300, 300);
         plant.setPos(r, c);
+		MusicPlayer play = new MusicPlayer("Plant.mp3");
+		new Thread(play).start();
         layeredPane.add(plant, Integer.valueOf(50));
         plants[r][c] = plant;
         new Thread(plant).start();
