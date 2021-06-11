@@ -360,6 +360,8 @@ public class Controller implements IController {
 	 * @param column 列
 	 */
 	public void boom(int row, int column) {
+		MusicPlayer play = new MusicPlayer("cherrybomb.mp3");
+		new Thread(play).start();
         if (row > 0)
             for (Zombie tempZombie : Zombies.get(row - 1)) {
                 int c = tempZombie.getColumn();
@@ -394,7 +396,7 @@ public class Controller implements IController {
     }
     
 	/** 
-	 * @param gameboardView
+	 * @param gameboardView 游戏窗口
 	 */
 	//-----------------------
 
