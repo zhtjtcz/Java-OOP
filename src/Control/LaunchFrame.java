@@ -16,19 +16,22 @@ public class LaunchFrame extends JFrame {
     public void reset(int x){
         if (gameboard != null){
             gameboard.reset();
-            // System.out.println("!!");
+             System.out.println("!!");
         }
-        else if (puzzleboard != null){
+        if (puzzleboard != null){
             puzzleboard.reset();
-            // System.out.println("!!!");
+            System.out.println("!!!");
         }
+        this.setContentPane(layeredPane);
+        layeredPane.setVisible(true);
+        layeredPane.repaint();
         /*
         if (x == 0)
             new LoseBoard();
         else
             new WinBoard();
         */
-        System.exit(0);
+//        System.exit(0);
     }
 
     public LaunchFrame() {
@@ -57,6 +60,7 @@ public class LaunchFrame extends JFrame {
         ImageIcon startImg = new ImageIcon("img\\SelectorScreen_StartAdventure_Button1.png");
         ImageIcon startImg2 = new ImageIcon("img\\SelectorScreen_StartAdventure_Highlight.png");
         JLabel startLabel = new JLabel(startImg);
+        gameboard = new GameBoard(LaunchFrame.this, layeredPane);
         startLabel.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
                 startLabel.setIcon(startImg2);
@@ -68,7 +72,7 @@ public class LaunchFrame extends JFrame {
 
             public void mouseClicked(MouseEvent e) {
                 layeredPane.setVisible(false);
-                gameboard = new GameBoard(LaunchFrame.this);
+                gameboard.startGame();
             }
         });
         startLabel.setBounds(410, 60, startImg.getIconWidth(), startImg2.getIconHeight());
@@ -98,6 +102,7 @@ public class LaunchFrame extends JFrame {
         ImageIcon smartImg = new ImageIcon("img\\SelectorScreen_Challenges_button.png");
         ImageIcon smartImg2 = new ImageIcon("img\\SelectorScreen_Challenges_highlight.png");
         JLabel smartLabel = new JLabel(smartImg);
+        puzzleboard = new PuzzleBoard(LaunchFrame.this, layeredPane);
         smartLabel.addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent e) {
                 smartLabel.setIcon(smartImg2);
@@ -109,7 +114,7 @@ public class LaunchFrame extends JFrame {
 
             public void mouseClicked(MouseEvent e) {
                 layeredPane.setVisible(false);
-                puzzleboard = new PuzzleBoard(LaunchFrame.this);
+                puzzleboard.startGame();
             }
         });
         smartLabel.setBounds(420, 255, smartImg.getIconWidth(), smartImg2.getIconHeight());

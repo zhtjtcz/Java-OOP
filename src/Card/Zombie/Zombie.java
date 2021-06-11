@@ -246,130 +246,135 @@ public class Zombie extends JLabel implements Runnable {
 
     public void endThread() {
         Thread.currentThread().interrupt();
+        hp = -1; setState(DIE);
     }
 
     @Override
     public void run() {
-        setState(MOVE);
-        while (hp > hp2) {
+        while (!Thread.currentThread().isInterrupted()) {
+            setState(MOVE);
+            while (hp > hp2 && !Thread.currentThread().isInterrupted()) {
 
-            if (this.name.equals("hzyZombie") && this.hp<200)       this.type = 1;
-            if (this.name.equals("BucketZombie") && this.hp<200)    this.type = 1;
-
-            // MOVE
-            while (this.state == MOVE) {
                 if (this.name.equals("hzyZombie") && this.hp<200)       this.type = 1;
                 if (this.name.equals("BucketZombie") && this.hp<200)    this.type = 1;
 
-                if (findPlant()) {
-                    setState(ATTACK);
-                    break;
-                }
-                // sleep 60ms, x--
+                // MOVE
+                while (this.state == MOVE && !Thread.currentThread().isInterrupted()) {
+                    if (this.name.equals("hzyZombie") && this.hp<200)       this.type = 1;
+                    if (this.name.equals("BucketZombie") && this.hp<200)    this.type = 1;
 
-                for (int j = 0; j < 2; j++) {
-                    for (int i = 0; i < 10 && this.state == MOVE; i++)
+                    if (findPlant()) {
+                        setState(ATTACK);
+                        break;
+                    }
+                    // sleep 60ms, x--
+
+                    for (int j = 0; j < 2; j++) {
+                        for (int i = 0; i < 10 && this.state == MOVE; i++)
+                            try {
+                                Thread.sleep(6);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                        this.x -= 1;
+                        System.out.println(x);
+                        if (x < -70){
+                            this.state = DIE;
+                            controller.endGame();
+                            setVisible(false);
+                            Thread.currentThread().interrupt();
+                        }
+                        this.setBounds(x, y, 400, 300);
+                        this.repaint();
+                    }
+                    // 120ms
+
+                    nowPic = (nowPic + 1) % nowSumPic;
+                    if (x < -70) controller.endGame();
+                }
+
+                // ATTACK
+                while (this.state == ATTACK && !Thread.currentThread().isInterrupted()) {
+                    if (this.name.equals("hzyZombie") && this.hp<200)       this.type = 1;
+                    if (this.name.equals("BucketZombie") && this.hp<200)    this.type = 1;
+
+                    for (int i = 0; i < 24 && this.state == ATTACK && findPlant(); i++) {
+                        if (getPlant() != null)
+                            getPlant().attacked(1);
                         try {
-                            Thread.sleep(6);
+                            Thread.sleep(5);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-
-                    this.x -= 1;
-                    if (x < -70){
-                        this.state = DIE;
-                        controller.endGame();
-                        setVisible(false);
-                        Thread.currentThread().interrupt();
                     }
-                    this.setBounds(x, y, 400, 300);
+                    nowPic = (nowPic + 1) % nowSumPic;
                     this.repaint();
+                    if (!findPlant() && this.state == ATTACK) setState(MOVE);
+                    // 不掉胳膊
+                    updateState();
                 }
-                // 120ms
-
-                nowPic = (nowPic + 1) % nowSumPic;
-                if (x < -70) controller.endGame();
             }
 
-            // ATTACK
-            while (this.state == ATTACK) {
-                if (this.name.equals("hzyZombie") && this.hp<200)       this.type = 1;
-                if (this.name.equals("BucketZombie") && this.hp<200)    this.type = 1;
 
-                for (int i = 0; i < 24 && this.state == ATTACK && findPlant(); i++) {
-                    if (getPlant() != null)
-                        getPlant().attacked(1);
+            while (hp > 0 && !Thread.currentThread().isInterrupted()) {
+                // 临界状态
+                while (this.state == LOSTHEAD || this.state == LOSTHEADATTACK) {
+                    // sleep 60ms change
+                    for (int j = 0; j < 2 && hp > 0; j++) {
+                        for (int i = 0; i < 10 && hp > 0; i++) {
+                            try {
+                                Thread.sleep(6);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        if (this.state == LOSTHEAD) {
+                            this.x--;
+                            this.setBounds(x, y, 400, 300);
+                        }
+                        headPic++;
+                        this.repaint();
+                    }
+                    // 120ms
+
+                    nowPic = (nowPic + 1) % nowSumPic;
+                    reduceHP(3);
+                    if (x < -70) controller.endGame();
+                }
+            }
+            controller.deleteZombie(this, row);
+
+            if (this.state == DIE && !Thread.currentThread().isInterrupted()) {
+                MusicPlayer play = new MusicPlayer("Zombie_Fail.mp3");
+                new Thread(play).start();
+                for (nowPic = 0; nowPic < nowSumPic; nowPic++) {
+                    // sleep 120ms change
                     try {
-                        Thread.sleep(5);
+                        Thread.sleep(120);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                }
-                nowPic = (nowPic + 1) % nowSumPic;
-                this.repaint();
-                if (!findPlant() && this.state == ATTACK) setState(MOVE);
-                // 不掉胳膊
-                updateState();
-            }
-        }
-
-
-        while (hp > 0) {
-            // 临界状态
-            while (this.state == LOSTHEAD || this.state == LOSTHEADATTACK) {
-                // sleep 60ms change
-                for (int j = 0; j < 2 && hp > 0; j++) {
-                    for (int i = 0; i < 10 && hp > 0; i++) {
-                        try {
-                            Thread.sleep(6);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    if (this.state == LOSTHEAD) {
-                        this.x--;
-                        this.setBounds(x, y, 400, 300);
-                    }
-                    headPic++;
                     this.repaint();
                 }
-                // 120ms
-
-                nowPic = (nowPic + 1) % nowSumPic;
-                reduceHP(3);
-                if (x < -70) controller.endGame();
             }
-        }
-        controller.deleteZombie(this, row);
+            // Die~~~
 
-        if (this.state == DIE) {
-            MusicPlayer play = new MusicPlayer("Zombie_Fail.mp3");
-            new Thread(play).start();
-            for (nowPic = 0; nowPic < nowSumPic; nowPic++) {
-                // sleep 120ms change
-                try {
-                    Thread.sleep(120);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            if (this.state == BOOM && !Thread.currentThread().isInterrupted()) {
+                for (nowPic = 0; nowPic < nowSumPic; nowPic++) {
+                    try {
+                        Thread.sleep(120);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    this.repaint();
                 }
-                this.repaint();
             }
-        }
-        // Die~~~
+            // Boom~~~
 
-        if (this.state == BOOM) {
-            for (nowPic = 0; nowPic < nowSumPic; nowPic++) {
-                try {
-                    Thread.sleep(120);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                this.repaint();
-            }
-        }
-        // Boom~~~
+            setVisible(false);
+            Thread.currentThread().interrupt();
 
-        setVisible(false);
-        Thread.currentThread().interrupt();
+        }
     }
 }

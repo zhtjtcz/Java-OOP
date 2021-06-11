@@ -106,6 +106,7 @@ public class PuzzleController implements IController {
                         reduceSun(nowPlant.getPrice());
                         cancelSelectingCard();
                     } else if (nowZombie != null && plants[grassR][grassC] == null && grassC >= 5 && !selectingShovel) {
+//                    } else if (nowZombie != null && plants[grassR][grassC] == null && !selectingShovel) {
                         getLayeredPane().add(nowZombie, Integer.valueOf(400));
                         nowZombie.setRow(grassR);
                         nowZombie.setCol(50 + (grassC - 1) * 80);

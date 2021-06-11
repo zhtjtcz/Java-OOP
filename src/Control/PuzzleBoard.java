@@ -14,12 +14,13 @@ import javax.swing.*;
 public class PuzzleBoard extends JLayeredPane {
     private static final long serialVersionUID = 1L;
 
+    private JLayeredPane father;
     private JFrame GameFrame;
     private ImageIcon panel, cardboard, shovelbank;
     private JPanel Panel;
     private JPanel Cardboard;
     private JPanel ShovelBank;
-
+    private MusicPlayer bgm;
     private Shovel shovel;
 
     IController controller;
@@ -36,6 +37,10 @@ public class PuzzleBoard extends JLayeredPane {
             sunThread.interrupt();
         if (zombieThread != null)
             zombieThread.interrupt();
+        if (bgm != null)
+            bgm.player.close();
+        this.setVisible(false);
+        this.removeAll();
     }
 
     class PaintThread implements Runnable {
@@ -66,8 +71,8 @@ public class PuzzleBoard extends JLayeredPane {
             }
 
             shovel.setBounds(458, -5, shovel.getImg().getIconWidth(), shovel.getImg().getIconHeight());
-            MusicPlayer play = new MusicPlayer("BackGroundMusic.mp3");
-            new Thread(play).start();
+            bgm = new MusicPlayer("BackGroundMusic.mp3");
+            new Thread(bgm).start();
             controller.setRunning();
 
             try {
@@ -80,9 +85,8 @@ public class PuzzleBoard extends JLayeredPane {
         }
     }
 
-    PuzzleBoard(LaunchFrame launchframe) {
-        this.controller = new PuzzleController(launchframe);
-        this.GameFrame = launchframe;
+    void startGame() {
+        this.controller = new PuzzleController((LaunchFrame) this.GameFrame);
         this.GameFrame.setContentPane(PuzzleBoard.this);
         this.setVisible(true);
 
@@ -96,6 +100,8 @@ public class PuzzleBoard extends JLayeredPane {
                 g.drawImage(panel.getImage(), x, 0, this.getWidth(), this.getHeight(), this);
             }
         };
+
+        System.out.println("SetBackground");
 
         Panel.setVisible(true);
         Panel.setBounds(0, 0, panel.getIconWidth(), panel.getIconHeight());
@@ -153,6 +159,7 @@ public class PuzzleBoard extends JLayeredPane {
             }
         });
 
+        System.out.println("SetShovel");
 
 //        // cards
         ZombieCard card1 = new ZombieCard("NormalZombie", controller);
@@ -181,7 +188,7 @@ public class PuzzleBoard extends JLayeredPane {
                 ((PuzzleController) controller).plant(i, j, new Plant().getPlant(map[i][j]));
 
         // animation
-        Thread Animation = new Thread(new PaintThread(launchframe));
+        Thread Animation = new Thread(new PaintThread((LaunchFrame) this.GameFrame));
         Animation.start();
 
         // mouse img
@@ -190,5 +197,10 @@ public class PuzzleBoard extends JLayeredPane {
         topPanel.setOpaque(false);
         topPanel.setBounds(0, 0, panel.getIconWidth(), panel.getIconHeight());
         PuzzleBoard.this.add(topPanel, Integer.valueOf(998244353));
+    }
+
+    PuzzleBoard(LaunchFrame launchframe, JLayeredPane layeredPane) {
+        this.GameFrame = launchframe;
+        this.father = layeredPane;
     }
 }

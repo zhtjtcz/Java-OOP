@@ -327,6 +327,7 @@ public class Controller implements IController {
     /* Card.Zombie */
     public void addZombie(Zombie zombie, int row) {
         Zombies.get(row).add(zombie);
+        System.out.println("Add " + Zombies.get(row).size());
     }
 
     

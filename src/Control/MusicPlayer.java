@@ -10,6 +10,7 @@ import javazoom.jl.player.Player;
 
 public class MusicPlayer implements Runnable {
 	public String name;
+	public Player player;
 	
 	public MusicPlayer(String name){
 		this.name = "music\\" + name;
@@ -23,18 +24,27 @@ public class MusicPlayer implements Runnable {
 		File mp3 = new File(this.name);
 		FileInputStream fis = new FileInputStream(mp3);
 		BufferedInputStream stream = new BufferedInputStream(fis);
-		Player player = new Player(stream);
-		player.play();
+		player = new Player(stream);
+		new Thread(()->{
+			try {
+				player.play();
+			} catch (JavaLayerException e) {
+				e.printStackTrace();
+			}
+		}).start();
 	}
 	
 	@Override
 	public void run(){
 			try{
-				if (this.name.equals("music\\BackGroundMusic.mp3")){
-					while (true)	Play();
+				Play();
+				while (this.name.equals("music\\BackGroundMusic.mp3")) {
+					if (player.isComplete())
+						Play();
+					if (Thread.currentThread().isInterrupted())
+						player.close();
+					Thread.sleep(800);
 				}
-				else
-					Play();
 			}	catch (Exception e){
 				System.out.println("Music play error!");
 			}

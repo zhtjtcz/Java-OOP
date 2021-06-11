@@ -18,6 +18,7 @@ public class GameBoard extends JLayeredPane {
     private JPanel Panel;
     private JPanel Cardboard;
     private JPanel ShovelBank;
+    private JLayeredPane father;
 
     private Shovel shovel;
 
@@ -27,12 +28,19 @@ public class GameBoard extends JLayeredPane {
     private boolean flag = false;
     private int direction = 1;
     private JLabel SunLabel;
+    private MusicPlayer bgm;
 
     Thread sunThread, zombieThread;
 
     public void reset() {
-        sunThread.interrupt();
-        zombieThread.interrupt();
+        if (sunThread != null)
+            sunThread.interrupt();
+        if (zombieThread != null)
+            zombieThread.interrupt();
+        if (bgm != null)
+            bgm.player.close();
+        this.setVisible(false);
+        this.removeAll();
     }
 
     class PaintThread implements Runnable {
@@ -49,7 +57,7 @@ public class GameBoard extends JLayeredPane {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
+            x = -10; flag = false; direction = 1;
             // 左右移动对准
             for (int i = 0; i < 895; i++) {
                 if (x <= -560 && !flag) {
@@ -99,8 +107,8 @@ public class GameBoard extends JLayeredPane {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            play = new MusicPlayer("BackGroundMusic.mp3");
-            new Thread(play).start();
+            bgm = new MusicPlayer("BackGroundMusic.mp3");
+            new Thread(bgm).start();
             controller.setRunning();
 
             try {
@@ -113,9 +121,9 @@ public class GameBoard extends JLayeredPane {
         }
     }
 
-    GameBoard(LaunchFrame launchframe) {
-        this.controller = new Controller(launchframe);
-        this.GameFrame = launchframe;
+    void startGame() {
+        x = -10;
+        this.controller = new Controller((LaunchFrame) this.GameFrame);
         this.GameFrame.setContentPane(GameBoard.this);
         this.setVisible(true);
 
@@ -205,21 +213,21 @@ public class GameBoard extends JLayeredPane {
         controller.addCard(card5);
         Cardboard.add(card5);
 
-		Card card6 = new Card("Potato", controller);
+        Card card6 = new Card("Potato", controller);
         card6.setRectangle(378, 7, card6.getCardWidth(), card6.getCardHeight());
         card6.setBounds(378, 7, card6.getCardWidth(), card6.getCardHeight());
         controller.addCard(card6);
         Cardboard.add(card6);
 
         // animation
-        Thread Animation = new Thread(new PaintThread(launchframe));
+        Thread Animation = new Thread(new PaintThread((LaunchFrame) this.GameFrame));
         Animation.start();
 
         // produce sun
-        sunThread = new Thread(new SunProducer(controller));
-        sunThread.start();
-
-        // produce zombie
+//        sunThread = new Thread(new SunProducer(controller));
+//        sunThread.start();
+//
+//        // produce zombie
         zombieThread = new Thread(new ZombieProducer(controller));
         zombieThread.start();
 
@@ -229,5 +237,10 @@ public class GameBoard extends JLayeredPane {
         topPanel.setOpaque(false);
         topPanel.setBounds(0, 0, panel.getIconWidth(), panel.getIconHeight());
         GameBoard.this.add(topPanel, Integer.valueOf(998244353));
+    }
+
+    GameBoard(LaunchFrame launchframe, JLayeredPane layeredPane) {
+        this.GameFrame = launchframe;
+        this.father = layeredPane;
     }
 }
