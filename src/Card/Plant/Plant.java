@@ -99,6 +99,7 @@ public class Plant extends JLabel implements Runnable {
 
     public void picChange() {
         if (this.name.equals("Potato")){
+            if (this.controller instanceof PuzzleController)    this.state = 1;
             if (getCnow() >= getCD() && this.state == 0){
                 this.state = 1;
                 pic = 0;

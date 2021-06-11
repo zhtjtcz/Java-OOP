@@ -13,7 +13,8 @@ public abstract class MapMaker {
         if (x <= 23)    return "SunFlower";
         else if (x<=75) return "PeaShooter";
         else if (x<=87) return "Repeater";
-        else return "WallNut";
+        else if (x<=94) return "WallNut";
+        else return "Potato";
         // 0~23  -> Sunflower
         // 24~75 -> Shoot
         // 76~87 -> Repeat

@@ -66,7 +66,8 @@ public class PuzzleBoard extends JLayeredPane {
             }
 
             shovel.setBounds(458, -5, shovel.getImg().getIconWidth(), shovel.getImg().getIconHeight());
-
+            MusicPlayer play = new MusicPlayer("BackGroundMusic.mp3");
+            new Thread(play).start();
             controller.setRunning();
 
             try {
