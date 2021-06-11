@@ -165,7 +165,7 @@ public class PuzzleBoard extends JLayeredPane {
         controller.addCard(card2);
         Cardboard.add(card2);
 
-        Card card6 = new ZombieCard("BucketZombie", controller);
+        Card card6 = new Card("BucketZombie", controller);
         card6.setRectangle(201, 7, card6.getCardWidth(), card6.getCardHeight());
         card6.setBounds(201, 7, card6.getCardWidth(), card6.getCardHeight());
         controller.addCard(card6);
