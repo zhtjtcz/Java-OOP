@@ -25,7 +25,12 @@ public class ZombieCard extends Card implements MouseListener, Runnable {
         this.addMouseListener(this);
     }
 
-    public boolean sunCountEnough(int SunCount) {
+    
+	/** 
+	 * @param SunCount 需要阳光数量
+	 * @return boolean 是否可以选择卡片
+	 */
+	public boolean sunCountEnough(int SunCount) {
         return SunCount >= zombieMap.get(this.cardName).getPrice();
     }
 

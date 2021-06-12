@@ -18,7 +18,7 @@ public class MusicPlayer implements Runnable {
 	
 	
 	/** 
-	 * @throws Exception
+	 * @throws Exception 异常
 	 */
 	public void Play() throws Exception{
 		File mp3 = new File(this.name);

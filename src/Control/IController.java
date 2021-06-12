@@ -18,7 +18,7 @@ public interface IController {
     void setPreImg(ImageIcon preImg);
     void setBlurImg(ImageIcon blurImg);
     void setNowPlant(Plant nowPlant);
-    void endGame();
+    void endGame(int x);
 
     // 阳光
     JLabel getSunCount();

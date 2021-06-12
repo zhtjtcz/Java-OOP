@@ -10,7 +10,7 @@ public abstract class MapMaker {
 	private static String GetPlant(){
         int x = (int) (Math.random() * 1000);
         x %= 100;
-        if (x <= 23)    return "SunFlower";
+        if (x <= 32)    return "SunFlower";
         else if (x<=75) return "PeaShooter";
         else if (x<=87) return "Repeater";
         else if (x<=94) return "WallNut";

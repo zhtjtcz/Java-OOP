@@ -114,7 +114,7 @@ public class Zombie extends JLabel implements Runnable {
 
     
 	/** 
-	 * @param row
+	 * @param row 行
 	 */
 	public void setRow(int row) {
         this.y = row * 100 + 28;
@@ -123,7 +123,7 @@ public class Zombie extends JLabel implements Runnable {
 
     
 	/** 
-	 * @param state
+	 * @param state 僵尸状态
 	 */
 	public void setState(int state) {
         this.state = state;
@@ -143,7 +143,7 @@ public class Zombie extends JLabel implements Runnable {
 
     
 	/** 
-	 * @param g
+	 * @param g 图层
 	 */
 	@Override
     public void paintComponent(Graphics g) {
@@ -185,8 +185,8 @@ public class Zombie extends JLabel implements Runnable {
     }
     
 	/** 
-	 * @param name
-	 * @return Zombie
+	 * @param name 僵尸名称
+	 * @return Zombie 僵尸
 	 */
 	// Paint the Zonbie
     // Depend on the situations
@@ -204,9 +204,9 @@ public class Zombie extends JLabel implements Runnable {
 
     
 	/** 
-	 * @param controller
-	 * @param row
-	 * @return Zombie
+	 * @param controller 控制器
+	 * @param row 行
+	 * @return Zombie 普通僵尸
 	 */
 	public Zombie NormalZombie(IController controller, int row) {
         Zombie tempZombie = new Zombie(controller, "NormalZombie", 200, 70, row, 4700 / 80);
@@ -225,9 +225,9 @@ public class Zombie extends JLabel implements Runnable {
 
     
 	/** 
-	 * @param controller
-	 * @param row
-	 * @return Zombie
+	 * @param controller 控制器
+	 * @param row 行
+	 * @return Zombie 路障僵尸
 	 */
 	public Zombie hzyZombie(IController controller, int row) {
         Zombie tempZombie = new Zombie(controller, "hzyZombie", 370, 180, row, 4700 / 80);
@@ -246,9 +246,9 @@ public class Zombie extends JLabel implements Runnable {
 
     
 	/** 
-	 * @param controller
-	 * @param row
-	 * @return Zombie
+	 * @param controller 控制器
+	 * @param row 行
+	 * @return Zombie 铁桶僵尸
 	 */
 	public Zombie BucketZombie(IController controller, int row) {
         Zombie tempZombie = new Zombie(controller, "BucketZombie", 1100, 180, row, 4700 / 80);
@@ -280,7 +280,7 @@ public class Zombie extends JLabel implements Runnable {
 
     
 	/** 
-	 * @return Plant
+	 * @return Plant 植物
 	 */
 	public Plant getPlant() {
         assert (findPlant());
@@ -289,7 +289,7 @@ public class Zombie extends JLabel implements Runnable {
 
     
 	/** 
-	 * @return boolean
+	 * @return boolean 当前行是否有植物
 	 */
 	public boolean findPlant() {
         if (getColumn() >= 9 || getColumn() < 0) return false;
@@ -298,7 +298,7 @@ public class Zombie extends JLabel implements Runnable {
 
     
 	/** 
-	 * @param x
+	 * @param x 受到的伤害量
 	 */
 	public void reduceHP(int x) {
         this.hp -= x;
@@ -351,7 +351,7 @@ public class Zombie extends JLabel implements Runnable {
                         this.x -= 1;
                         if (x < -70){
                             this.state = DIE;
-                            controller.endGame();
+                            controller.endGame(this.row);
                             setVisible(false);
                             Thread.currentThread().interrupt();
                         }
@@ -361,7 +361,7 @@ public class Zombie extends JLabel implements Runnable {
                     // 120ms
 
                     nowPic = (nowPic + 1) % nowSumPic;
-                    if (x < -70) controller.endGame();
+                    if (x < -70) controller.endGame(this.row);
                 }
 
                 // ATTACK
@@ -410,7 +410,7 @@ public class Zombie extends JLabel implements Runnable {
 
                     nowPic = (nowPic + 1) % nowSumPic;
                     reduceHP(3);
-                    if (x < -70) controller.endGame();
+                    if (x < -70) controller.endGame(this.row);
                 }
             }
             controller.deleteZombie(this, row);

@@ -359,7 +359,11 @@ public class Controller implements IController {
     }
 
     
-    public void Potatoboom(int row, int column){
+	/** 
+	 * @param row 行
+	 * @param column 列
+	 */
+	public void Potatoboom(int row, int column){
 		MusicPlayer play = new MusicPlayer("potato_mine.mp3");
 		new Thread(play).start();
 		for (Zombie tempZombie : Zombies.get(row)) {
@@ -408,6 +412,12 @@ public class Controller implements IController {
         return false;
     }
 	
+	
+	/** 
+	 * @param row 行
+	 * @param column 列
+	 * @return boolean 该位置是否有僵尸
+	 */
 	public boolean haveaZombie(int row, int column){
 		for (Zombie zombie : Zombies.get(row)){
 			int c = zombie.getColumn();
@@ -434,7 +444,11 @@ public class Controller implements IController {
         checkCards();
     }
 
-    public void endGame() {
+    
+	/** 
+	 * @param x 游戏结束状态
+	 */
+	public void endGame(int x) {
         System.out.println("You Lost.");
         for (int i = 0; i < numRow; i++) {
             for (int j = 0; j < numCol; j++)

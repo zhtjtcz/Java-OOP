@@ -15,11 +15,19 @@ public class Shovel extends JLabel implements Runnable {
         this.controller = controller;
     }
 
-    public ImageIcon getImg() {
+    
+	/** 
+	 * @return ImageIcon 铲子图片
+	 */
+	public ImageIcon getImg() {
         return shovelImg;
     }
 
-    @Override
+    
+	/** 
+	 * @param g 图层
+	 */
+	@Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(shovelImg.getImage(), 0, 0, shovelImg.getIconWidth(), shovelImg.getIconHeight(), this);

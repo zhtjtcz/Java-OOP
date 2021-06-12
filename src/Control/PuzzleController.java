@@ -18,7 +18,11 @@ public class PuzzleController implements IController {
     public boolean isRunning = false;
     private int selectedIndex = -1;
     private boolean selectingShovel = false;
-    // Basic settings
+    
+	/** 
+	 * @return boolean 是否运行
+	 */
+	// Basic settings
 
 
     @Override
@@ -51,6 +55,7 @@ public class PuzzleController implements IController {
     // Shovel
 
     public List<ArrayList<Zombie>> Zombies = new LinkedList<>();
+    public int[] Line = new int [5];
     // Zombies
 
     private Point mouseP;
@@ -58,13 +63,21 @@ public class PuzzleController implements IController {
     private TopPanel topPanel = new TopPanel();
     private ImageIcon preImg;
     private ImageIcon blurImg;
-    // Mouse
+    
+	/** 
+	 * @return JLayeredPane 鼠标图标
+	 */
+	// Mouse
 
     public JLayeredPane getLayeredPane() {
         return layeredPane;
     }
 
-    public int getSelectedIndex() {
+    
+	/** 
+	 * @return int 返回选择序号
+	 */
+	public int getSelectedIndex() {
         return selectedIndex;
     }
 
@@ -79,7 +92,7 @@ public class PuzzleController implements IController {
             Point p = getP();
             if (p == null) return;
 
-            if (shovel.getBounds().contains(p)) return;
+            // if (shovel.getBounds().contains(p)) return;
 
             if (e.getButton() == MouseEvent.BUTTON3) {// right click, cancel choosing card
                 if (card != null) {
@@ -146,54 +159,109 @@ public class PuzzleController implements IController {
         this.topPanel.setVisible(false);
     }
 
-    /* Sun */
+    
+	/** 
+	 * @param cnt 阳光数量
+	 */
+	/* Sun */
     public void setSunCount(JLabel cnt) {
         this.sunCount = cnt;
     }
 
-    public void setSunCount(int cnt) {
+    
+	/** 
+	 * @param cnt 阳光数量(文本)
+	 */
+	public void setSunCount(int cnt) {
         this.sunCount.setText("" + cnt);
     }
 
-    public void addSunCount(int cnt) {
+    
+	/** 
+	 * @param cnt 阳光增加数量
+	 */
+	public void addSunCount(int cnt) {
         setSunCount(cnt + getIntSunCount());
     }
 
-    public JLabel getSunCount() {
+    
+	/** 
+	 * @return JLabel 获取阳光数量
+	 */
+	public JLabel getSunCount() {
         return this.sunCount;
     }
 
-    public int getIntSunCount() {
+    
+	/** 
+	 * @return int 获取阳光数量(文本)
+	 */
+	public int getIntSunCount() {
         return Integer.parseInt(this.sunCount.getText());
     }
 
-    public void reduceSun(int x) {
+    
+	/** 
+	 * @param x 阳光减少数量
+	 */
+	public void reduceSun(int x) {
         int sun = getIntSunCount();
         sun -= x;
         setSunCount(sun);
     }
-    //-----------------------
+    
+	/** 
+	 * @return Plant[][] 获取当前植物种植情况
+	 */
+	//-----------------------
 
     /* Card.Plant */
     public Plant[][] getPlants() {
         return this.plants;
     }
 
-    public Map<String, Plant> getPlantMap() {
+    
+	/** 
+	 * @return Map<String, Plant> 获取植物图
+	 */
+	public Map<String, Plant> getPlantMap() {
         return plantMap;
     }
 
-    public Map<String, Zombie> getZombieMap() {return zombieMap;}
+    
+	/** 
+	 * @param row 行
+	 * @param column 列
+	 * @return Map<String, Zombie> 获取僵尸图
+	 */
+	public Map<String, Zombie> getZombieMap() {return zombieMap;}
 
-    public void plantDeath(int row, int column) {
+    
+	/** 
+	 * @param row 行
+	 * @param column 列
+	 */
+	public void plantDeath(int row, int column) {
         plants[row][column] = null;
     }
 
-    private boolean isOnGrass(int r, int c) {
+    
+	/** 
+	 * @param r 行
+	 * @param c 列
+	 * @return boolean 是否在地图上
+	 */
+	private boolean isOnGrass(int r, int c) {
         return r >= 0 && r < numRow && c >= 0 && c < numCol;
     }
 
-    public void plant(int r, int c, Plant plant) {
+    
+	/** 
+	 * @param r 行
+	 * @param c 列
+	 * @param plant 该位置被种植的植物
+	 */
+	public void plant(int r, int c, Plant plant) {
         plant.setController(this);
         plant.setVisible(true);
         plant.setBounds(45 + c * 80, 90 + r * 100, 300, 300);
@@ -202,7 +270,11 @@ public class PuzzleController implements IController {
         plants[r][c] = plant;
         new Thread(plant).start();
     }
-    // Put a plant on (r,c)
+    
+	/** 
+	 * @param card 被选择的卡片
+	 */
+	// Put a plant on (r,c)
     //-----------------------
 
 
@@ -211,11 +283,19 @@ public class PuzzleController implements IController {
         this.card = card;
     }
 
-    public void setSelectedIndex(int x) {
+    
+	/** 
+	 * @param x 被选择卡片ID
+	 */
+	public void setSelectedIndex(int x) {
         this.selectedIndex = x;
     }
 
-    public Card getCard() {
+    
+	/** 
+	 * @return Card 当前选择卡片
+	 */
+	public Card getCard() {
         return card;
     }
 
@@ -227,11 +307,16 @@ public class PuzzleController implements IController {
         topPanel.setVisible(false);
     }
 
-    public void setNowPlant(Plant nowPlant) {
+    
+	/** 
+	 * @param nowPlant 种植植物
+	 */
+	public void setNowPlant(Plant nowPlant) {
         this.nowPlant = nowPlant;
     }
 
-    public void setNowZombie(Zombie zombie) {this.nowZombie = zombie;}
+    
+	public void setNowZombie(Zombie zombie) {this.nowZombie = zombie;}
 
     public void checkCards() {
         for (int i = 0; i < cardNum; i++) Cards[i].check(getIntSunCount());
@@ -248,13 +333,22 @@ public class PuzzleController implements IController {
         zombieMap.put("NormalZombie", new Zombie().NormalZombie(this, 1));
     }
 
-    public void addCard(Card card) {
+    
+	/** 
+	 * @param card 待增加卡片
+	 */
+	public void addCard(Card card) {
         Cards[cardNum] = card;
         card.setIndex(cardNum);
         new Thread(card).start();
         cardNum++;
     }
-    //-----------------------
+    
+	/** 
+	 * @param zombie 僵尸
+	 * @param row 行数
+	 */
+	//-----------------------
 
     /* Card.Zombie */
     public void addZombie(Zombie zombie, int row) {
@@ -262,7 +356,12 @@ public class PuzzleController implements IController {
         System.out.println("Add Zombie  " + Zombies.get(row).size() + " " + zombie.getXPos());
     }
 
-    public void deleteZombie(Zombie zombie, int row) {
+    
+	/** 
+	 * @param zombie 僵尸
+	 * @param row 行数
+	 */
+	public void deleteZombie(Zombie zombie, int row) {
         for (Zombie tempZombie : Zombies.get(row))
             if (tempZombie == zombie) {
                 Zombies.get(row).remove(tempZombie);
@@ -271,7 +370,13 @@ public class PuzzleController implements IController {
         assert (false);
     }
 
-    public Zombie getAttackedZombie(int row, int x) {
+    
+	/** 
+	 * @param row 行
+	 * @param x 位置
+	 * @return Zombie 僵尸
+	 */
+	public Zombie getAttackedZombie(int row, int x) {
         for (Zombie tempZombie : Zombies.get(row))
             if (tempZombie.getXPos() >= x - 2 && tempZombie.getXPos() <= x + 2) {
                 return tempZombie;
@@ -279,7 +384,12 @@ public class PuzzleController implements IController {
         return null;
     }
 
-    public void boom(int row, int column) {
+    
+	/** 
+	 * @param row 行
+	 * @param column 列
+	 */
+	public void boom(int row, int column) {
         if (row > 0)
             for (Zombie tempZombie : Zombies.get(row - 1)) {
                 int c = tempZombie.getColumn();
@@ -302,7 +412,12 @@ public class PuzzleController implements IController {
             }
     }
     
-    public void Potatoboom(int row, int column){
+    
+	/** 
+	 * @param row 行
+	 * @param column 列
+	 */
+	public void Potatoboom(int row, int column){
         MusicPlayer play = new MusicPlayer("potato_mine.mp3");
         new Thread(play).start();
         for (Zombie tempZombie : Zombies.get(row)) {
@@ -311,20 +426,35 @@ public class PuzzleController implements IController {
         }
     }
 
-    public boolean haveZombie(int row) {
+    
+	/** 
+	 * @param row 行
+	 * @return boolean 该行是否有僵尸
+	 */
+	public boolean haveZombie(int row) {
         for (Zombie zombie : Zombies.get(row))
             if (zombie.getXPos() < 720) return true;
         return false;
     }
     
-    public boolean haveaZombie(int row, int column){
+    
+	/** 
+	 * @param row 行
+	 * @param column 列
+	 * @return boolean 该位置是否有僵尸
+	 */
+	public boolean haveaZombie(int row, int column){
         for (Zombie zombie : Zombies.get(row)){
             int c = zombie.getColumn();
             if (c == column) return true;
         }
         return false;
     }
-    //-----------------------
+    
+	/** 
+	 * @param gameboardView 游戏窗口
+	 */
+	//-----------------------
 
     /* Game Control */
     public void setLayeredPane(JLayeredPane gameboardView) {
@@ -338,7 +468,16 @@ public class PuzzleController implements IController {
         checkCards();
     }
 
-    public void endGame() {
+    
+	/** 
+	 * @param x 游戏结束状态
+	 */
+	public void endGame(int x) {
+        int cnt = 0;
+        Line[x] = 1;
+        for (int i = 0; i < 5; i++)
+            cnt += Line[i];
+        if (cnt < 5) return;
         System.out.println("You Lost.");
         synchronized (Zombies) {
             for (int i = 0; i < numRow; i++) {
@@ -352,14 +491,22 @@ public class PuzzleController implements IController {
         this.isRunning = false;
         frame.reset(0);
     }
-    //-----------------------
+    
+	/** 
+	 * @param shovel 铲子
+	 */
+	//-----------------------
 
     /* Shovel */
     public void setShovel(Shovel shovel) {
         this.shovel = shovel;
     }
 
-    public void setShovel(boolean b) {
+    
+	/** 
+	 * @param b 是否拿上了铲子
+	 */
+	public void setShovel(boolean b) {
         this.selectingShovel = b;
         if (b) {
             ImageIcon pre;
@@ -372,26 +519,46 @@ public class PuzzleController implements IController {
             shovel.setVisible(true);
         }
     }
-    //-----------------------
+    
+	/** 
+	 * @return Point 鼠标点击位置
+	 */
+	//-----------------------
 
     /* Mouse */
     public Point getP() {
         return topPanel.getMousePosition();
     }
 
-    public void setP(Point p) {
+    
+	/** 
+	 * @param p 位置
+	 */
+	public void setP(Point p) {
         this.mouseP = p;
     }
 
-    public JPanel getTopPanel() {
+    
+	/** 
+	 * @return JPanel 鼠标图标
+	 */
+	public JPanel getTopPanel() {
         return topPanel;
     }
 
-    public void setPreImg(ImageIcon preImg) {
+    
+	/** 
+	 * @param preImg 图片
+	 */
+	public void setPreImg(ImageIcon preImg) {
         this.preImg = preImg;
     }
 
-    public void setBlurImg(ImageIcon blurImg) {
+    
+	/** 
+	 * @param blurImg 图片
+	 */
+	public void setBlurImg(ImageIcon blurImg) {
         this.blurImg = blurImg;
     }
 

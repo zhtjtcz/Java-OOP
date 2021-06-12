@@ -180,7 +180,11 @@ public class Sun extends JLabel implements Runnable {
         setVisible(false);
         Thread.currentThread().interrupt();
     }
-    // Collect it
+    
+	/** 
+	 * @param g 图层
+	 */
+	// Collect it
 
     @Override
     public void paintComponent(Graphics g) {
@@ -193,7 +197,11 @@ public class Sun extends JLabel implements Runnable {
         g2.drawImage(image, 0, 0, img.getIconWidth() * 6 / 7, img.getIconWidth() * 6 / 7, this);
     }
 
-    public void update(Graphics g) {
+    
+	/** 
+	 * @param g 图层
+	 */
+	public void update(Graphics g) {
         if (offScreenImage == null)
             offScreenImage = this.createImage(800, 600);
         Graphics gImage = offScreenImage.getGraphics();

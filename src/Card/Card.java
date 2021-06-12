@@ -37,68 +37,135 @@ public class Card extends JLabel implements MouseListener, Runnable {
 
     protected int index;
 
-    public int getIndex() {
+    
+	/** 
+	 * @return int 卡片ID
+	 */
+	public int getIndex() {
         return index;
     }
 
-    public void setIndex(int index) {
+    
+	/** 
+	 * @param index ID
+	 */
+	public void setIndex(int index) {
         this.index = index;
     }
 
-    public void setRectangle(int x, int y, int w, int h) {
+    
+	/** 
+	 * @param x x坐标
+	 * @param y y坐标
+	 * @param w 宽度
+	 * @param h 高度
+	 */
+	public void setRectangle(int x, int y, int w, int h) {
         this.rectangle = new Rectangle(x, y, w, h);
     }
 
-    public Rectangle getRectangle() {
+    
+	/** 
+	 * @return Rectangle 长方形卡片
+	 */
+	public Rectangle getRectangle() {
         return rectangle;
     }
 
-    public void setInCooling(boolean b) {
+    
+	/** 
+	 * @param b 是否在冷却状态
+	 */
+	public void setInCooling(boolean b) {
         this.inCooling = b;
     }
 
-    public boolean getInCooling() {
+    
+	/** 
+	 * @return boolean 是否在冷却
+	 */
+	public boolean getInCooling() {
         return inCooling;
     }
 
-    public int getPrice() {
+    
+	/** 
+	 * @return int 价格
+	 */
+	public int getPrice() {
         return price;
     }
 
-    public String getCardName() {
+    
+	/** 
+	 * @return String 卡片名称
+	 */
+	public String getCardName() {
         return cardName;
     }
 
-    public int getCardWidth() {
+    
+	/** 
+	 * @return int 卡片宽度
+	 */
+	public int getCardWidth() {
         return cardWidth;
     }
 
-    public int getCardHeight() {
+    
+	/** 
+	 * @return int 卡片高度
+	 */
+	public int getCardHeight() {
         return cardHeight;
     }
 
-    public void setChoosed(boolean choosed) {
+    
+	/** 
+	 * @param choosed 是否被选择
+	 */
+	public void setChoosed(boolean choosed) {
         this.isChoosed = choosed;
     }
 
-    @Override
+    
+	/** 
+	 * @param e 点击事件
+	 */
+	@Override
     public void mouseClicked(MouseEvent e) {
         selected();
     }
 
-    @Override
+    
+	/** 
+	 * @param e 进入事件
+	 */
+	@Override
     public void mouseEntered(MouseEvent e) {
     }
 
-    @Override
+    
+	/** 
+	 * @param e 退出事件
+	 */
+	@Override
     public void mouseExited(MouseEvent e) {
     }
 
-    @Override
+    
+	/** 
+	 * @param e 按下事件
+	 */
+	@Override
     public void mousePressed(MouseEvent e) {
     }
 
-    @Override
+    
+	/** 
+	 * @param e 释放事件
+	 */
+	@Override
     public void mouseReleased(MouseEvent e) {
     }
 
@@ -125,11 +192,20 @@ public class Card extends JLabel implements MouseListener, Runnable {
         }
     }
 
-    public boolean sunCountEnough(int SunCount) {
+    
+	/** 
+	 * @param SunCount 需要阳光数量
+	 * @return boolean 是否可以购买
+	 */
+	public boolean sunCountEnough(int SunCount) {
         return SunCount >= plantMap.get(this.cardName).getPrice();
     }
 
-    public void check(int SunCount) {
+    
+	/** 
+	 * @param SunCount 需要阳光数量
+	 */
+	public void check(int SunCount) {
         if (sunCountEnough(SunCount) && !inCooling) {
             card = cardLight;
             this.repaint();
@@ -138,7 +214,11 @@ public class Card extends JLabel implements MouseListener, Runnable {
             this.repaint();
         }
     }
-    // 能否选择这个卡，能：light，否：dark
+    
+	/** 
+	 * @param g 图层
+	 */
+	// 能否选择这个卡，能：light，否：dark
 
     @Override
     public void paintComponent(Graphics g) {

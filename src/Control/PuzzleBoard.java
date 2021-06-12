@@ -70,7 +70,7 @@ public class PuzzleBoard extends JLayeredPane {
                 Cardboard.repaint();
             }
 
-            shovel.setBounds(458, -5, shovel.getImg().getIconWidth(), shovel.getImg().getIconHeight());
+            // shovel.setBounds(458, -5, shovel.getImg().getIconWidth(), shovel.getImg().getIconHeight());
             bgm = new MusicPlayer("BackGroundMusic.mp3");
             new Thread(bgm).start();
             controller.setRunning();
@@ -143,6 +143,7 @@ public class PuzzleBoard extends JLayeredPane {
         PuzzleBoard.this.add(ShovelBank, 0);
 
         // shovel
+        /*
         shovel = new Shovel(controller);
         shovel.setVisible(true);
         controller.setShovel(shovel);
@@ -158,7 +159,7 @@ public class PuzzleBoard extends JLayeredPane {
             public void mouseExited(MouseEvent e) {
             }
         });
-
+        */
         System.out.println("SetShovel");
 
 //        // cards

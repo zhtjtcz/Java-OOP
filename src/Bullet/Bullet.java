@@ -14,7 +14,7 @@ public class Bullet extends JLabel implements Runnable {
 
     
 	/** 
-	 * @param g 待显示图片
+	 * @param g 图层
 	 */
 	@Override
     public void paintComponent(Graphics g) {

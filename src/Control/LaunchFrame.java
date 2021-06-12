@@ -13,7 +13,11 @@ public class LaunchFrame extends JFrame {
     private GameBoard gameboard;
     private PuzzleBoard puzzleboard;
 
-    public void reset(int x){
+    
+	/** 
+	 * @param x 游戏结束状态
+	 */
+	public void reset(int x){
         if (gameboard != null){
             gameboard.reset();
         }
@@ -92,7 +96,7 @@ public class LaunchFrame extends JFrame {
             }
 
             public void mouseClicked(MouseEvent e) {
-                layeredPane.setVisible(false);
+            
             }
         });
         miniLabel.setBounds(415, 170, miniImg.getIconWidth(), miniImg2.getIconHeight());
@@ -134,7 +138,7 @@ public class LaunchFrame extends JFrame {
             }
 
             public void mouseClicked(MouseEvent e) {
-                layeredPane.setVisible(false);
+            
             }
         });
         surviveLabel.setBounds(420, 325, surviveImg.getIconWidth(), surviveImg2.getIconHeight());
@@ -359,7 +363,7 @@ public class LaunchFrame extends JFrame {
             }
 
             public void mouseClicked(MouseEvent e) {
-                System.exit(0);
+                // System.exit(0);
                 // TODO add a new page
             }
         });
