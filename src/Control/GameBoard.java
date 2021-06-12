@@ -224,10 +224,10 @@ public class GameBoard extends JLayeredPane {
         Animation.start();
 
         // produce sun
-//        sunThread = new Thread(new SunProducer(controller));
-//        sunThread.start();
-//
-//        // produce zombie
+        sunThread = new Thread(new SunProducer(controller));
+        sunThread.start();
+
+        // produce zombie
         zombieThread = new Thread(new ZombieProducer(controller));
         zombieThread.start();
 
