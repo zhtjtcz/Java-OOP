@@ -49,49 +49,99 @@ public class Plant extends JLabel implements Runnable {
         this.state = 0;
     }
 
-    public int getR() {
+    
+	/** 
+	 * @return int 行数
+	 */
+	public int getR() {
         return row;
     }
 
-    public int getC() {
+    
+	/** 
+	 * @return int 列数
+	 */
+	public int getC() {
         return column;
     }
 
-    public int getPic() {
+    
+	/** 
+	 * @return int 获取图片
+	 */
+	public int getPic() {
         return pic;
     }
 
-    public void setCnow(int Cnow) {
+    
+	/** 
+	 * @param Cnow 设置累计的冷却时间
+	 */
+	public void setCnow(int Cnow) {
         this.Cnow = Cnow;
     }
 
-    public int getCnow() {
+    
+	/** 
+	 * @return int 获取当前冷却时间
+	 */
+	public int getCnow() {
         return Cnow;
     }
 
-    public int getCD() {
+    
+	/** 
+	 * @return int CD间隔
+	 */
+	public int getCD() {
         return CD;
     }
 
-    public int getPrice() {
+    
+	/** 
+	 * @return int 价格
+	 */
+	public int getPrice() {
         return price;
     }
 
-    public int getCardCD() {
+    
+	/** 
+	 * @return int 卡片CD
+	 */
+	public int getCardCD() {
         return cardCD;
     }
 
-    public String getName() { return this.name; }
+    
+	/** 
+	 * @param getController(
+	 * @return String 植物名称
+	 */
+	public String getName() { return this.name; }
 
-    public IController getController() {
+    
+	/** 
+	 * @return IController 我是僵尸模式的控制器
+	 */
+	public IController getController() {
         return controller;
     }
 
-    public void setController(IController controller) {
+    
+	/** 
+	 * @param controller 当前模式的控制器
+	 */
+	public void setController(IController controller) {
         this.controller = controller;
     }
 
-    public void setPos(int row, int column) {
+    
+	/** 
+	 * @param row 行
+	 * @param column 列
+	 */
+	public void setPos(int row, int column) {
         this.row = row;
         this.column = column;
     }
@@ -119,7 +169,11 @@ public class Plant extends JLabel implements Runnable {
                     + "_cracked" + state + "_" + pic + ".png");
     }
 
-    public void attacked(int x) {
+    
+	/** 
+	 * @param x 受到的伤害值
+	 */
+	public void attacked(int x) {
         this.hp -= x;
         if (this.getName().equals("WallNut")) {
             if (this.hp < 1333) {
@@ -150,7 +204,11 @@ public class Plant extends JLabel implements Runnable {
                 new Thread(new Sun(getController(), getR(), getC())).start();
     }
 
-    @Override
+    
+	/** 
+	 * @param g 图层
+	 */
+	@Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
@@ -185,7 +243,12 @@ public class Plant extends JLabel implements Runnable {
         }
         this.Cnow = this.Cnow + 1;
     }
-    // Accelorator the CD time
+    
+	/** 
+	 * @param name 植物名称
+	 * @return Plant 植物
+	 */
+	// Accelorator the CD time
 
     public Plant getPlant(String name) {
         return switch (name) {
@@ -261,7 +324,11 @@ public class Plant extends JLabel implements Runnable {
         die();
     }
 
-    // All plant is here~
+    
+	/** 
+	 * @return Plant  向日葵
+	 */
+	// All plant is here~
     public Plant SunFlower() {
         Plant tempPlant = new Plant("SunFlower", 50, 0, 300, 17, true);
         tempPlant.CD = 24000 / 90;
@@ -270,7 +337,11 @@ public class Plant extends JLabel implements Runnable {
         return tempPlant;
     }
 
-    public Plant PeaShooter() {
+    
+	/** 
+	 * @return Plant 豌豆射手
+	 */
+	public Plant PeaShooter() {
         Plant tempPlant = new Plant("PeaShooter", 100, 0, 300, 13, true);
         tempPlant.CD = 1000 / 90;
         tempPlant.cardCD = 3000;// 7500;
@@ -278,7 +349,11 @@ public class Plant extends JLabel implements Runnable {
         return tempPlant;
     }
 
-    public Plant Repeater() {
+    
+	/** 
+	 * @return Plant 双发射手
+	 */
+	public Plant Repeater() {
         Plant tempPlant = new Plant("Repeater", 200, 0, 300, 15, true);
         tempPlant.CD = 1000 / 90;
         tempPlant.cardCD = 3500;// 7500;
@@ -286,7 +361,11 @@ public class Plant extends JLabel implements Runnable {
         return tempPlant;
     }
 
-    public Plant CherryBomb() {
+    
+	/** 
+	 * @return Plant 樱桃炸弹
+	 */
+	public Plant CherryBomb() {
         Plant tempPlant = new Plant("CherryBomb", 150, 0, 1000000, 8, true);
         tempPlant.CD = 1000000;
         tempPlant.cardCD = 10000;// 12500;
@@ -294,7 +373,11 @@ public class Plant extends JLabel implements Runnable {
         return tempPlant;
     }
 
-    public Plant WallNut() {
+    
+	/** 
+	 * @return Plant 坚果墙
+	 */
+	public Plant WallNut() {
         Plant tempPlant = new Plant("WallNut", 50, 0, 4000, 16, true);
         tempPlant.CD = 1000000;
         tempPlant.cardCD = 8000;
@@ -302,7 +385,11 @@ public class Plant extends JLabel implements Runnable {
         return tempPlant;
     }
     
-    public Plant Potato() {
+    
+	/** 
+	 * @return Plant 土豆雷
+	 */
+	public Plant Potato() {
         Plant tempPlant = new Plant("Potato", 25, 0, 300, 9, true);
         tempPlant.CD = 10000 / 90;
         tempPlant.cardCD = 8000;

@@ -22,11 +22,19 @@ public class Zombie extends JLabel implements Runnable {
     private int cardCD;
     private int price;
 
-    public int getCardCD() {
+    
+	/** 
+	 * @return int 僵尸卡片CD
+	 */
+	public int getCardCD() {
         return cardCD;
     }
 
-    public int getPrice() {
+    
+	/** 
+	 * @return int 僵尸价格
+	 */
+	public int getPrice() {
         return price;
     }
 
@@ -72,28 +80,52 @@ public class Zombie extends JLabel implements Runnable {
         this.headPos = (int) (Math.random() * 60 + 30);
     }
 
-    public int getXPos() {
+    
+	/** 
+	 * @return int X坐标
+	 */
+	public int getXPos() {
         return x;
     }
 
-    public int getColumn() {
+    
+	/** 
+	 * @return int 列
+	 */
+	public int getColumn() {
         return (x + 60) / 80;
     }
 
-    public int getRow() {
+    
+	/** 
+	 * @return int 行
+	 */
+	public int getRow() {
         return row;
     }
 
-    public void setCol(int col) {
+    
+	/** 
+	 * @param col 列
+	 */
+	public void setCol(int col) {
         this.x = col;
     }
 
-    public void setRow(int row) {
+    
+	/** 
+	 * @param row
+	 */
+	public void setRow(int row) {
         this.y = row * 100 + 28;
         this.row = row;
     }
 
-    public void setState(int state) {
+    
+	/** 
+	 * @param state
+	 */
+	public void setState(int state) {
         this.state = state;
         nowPic = 0;
         if (state == MOVE) this.nowSumPic = moveSum;
@@ -109,7 +141,11 @@ public class Zombie extends JLabel implements Runnable {
             this.nowSumPic = boomSum;
     }
 
-    @Override
+    
+	/** 
+	 * @param g
+	 */
+	@Override
     public void paintComponent(Graphics g) {
         ImageIcon Img;
         super.paintComponent(g);
@@ -147,7 +183,12 @@ public class Zombie extends JLabel implements Runnable {
             g2.drawImage(Img.getImage(), 0, 0, Img.getIconWidth(), Img.getIconHeight(), this);
         }
     }
-    // Paint the Zonbie
+    
+	/** 
+	 * @param name
+	 * @return Zombie
+	 */
+	// Paint the Zonbie
     // Depend on the situations
 
 
@@ -161,7 +202,13 @@ public class Zombie extends JLabel implements Runnable {
     }
 
 
-    public Zombie NormalZombie(IController controller, int row) {
+    
+	/** 
+	 * @param controller
+	 * @param row
+	 * @return Zombie
+	 */
+	public Zombie NormalZombie(IController controller, int row) {
         Zombie tempZombie = new Zombie(controller, "NormalZombie", 200, 70, row, 4700 / 80);
         tempZombie.type = 0;
         tempZombie.moveSum = tempZombie.sumPic[type];
@@ -176,7 +223,13 @@ public class Zombie extends JLabel implements Runnable {
         return tempZombie;
     }
 
-    public Zombie hzyZombie(IController controller, int row) {
+    
+	/** 
+	 * @param controller
+	 * @param row
+	 * @return Zombie
+	 */
+	public Zombie hzyZombie(IController controller, int row) {
         Zombie tempZombie = new Zombie(controller, "hzyZombie", 370, 180, row, 4700 / 80);
         tempZombie.type = 0;
         tempZombie.moveSum = tempZombie.sumPic[type];
@@ -191,7 +244,13 @@ public class Zombie extends JLabel implements Runnable {
         return tempZombie;
     }
 
-    public Zombie BucketZombie(IController controller, int row) {
+    
+	/** 
+	 * @param controller
+	 * @param row
+	 * @return Zombie
+	 */
+	public Zombie BucketZombie(IController controller, int row) {
         Zombie tempZombie = new Zombie(controller, "BucketZombie", 1100, 180, row, 4700 / 80);
         tempZombie.type = 0;
         tempZombie.moveSum = tempZombie.sumPic[type];
@@ -219,17 +278,29 @@ public class Zombie extends JLabel implements Runnable {
         }
     }
 
-    public Plant getPlant() {
+    
+	/** 
+	 * @return Plant
+	 */
+	public Plant getPlant() {
         assert (findPlant());
         return controller.getPlants()[row][getColumn()];
     }
 
-    public boolean findPlant() {
+    
+	/** 
+	 * @return boolean
+	 */
+	public boolean findPlant() {
         if (getColumn() >= 9 || getColumn() < 0) return false;
         return controller.getPlants()[row][getColumn()] != null;
     }
 
-    public void reduceHP(int x) {
+    
+	/** 
+	 * @param x
+	 */
+	public void reduceHP(int x) {
         this.hp -= x;
         // MusicPlayer play = new MusicPlayer("splat.mp3");
         // new Thread(play).start();

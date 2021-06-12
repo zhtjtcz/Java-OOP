@@ -12,7 +12,11 @@ public class Bullet extends JLabel implements Runnable {
     private ImageIcon img;
     private int x, y, row;
 
-    @Override
+    
+	/** 
+	 * @param g 待显示图片
+	 */
+	@Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
@@ -32,13 +36,24 @@ public class Bullet extends JLabel implements Runnable {
         controller.getLayeredPane().add(this, Integer.valueOf(500));
     }
 
-    public Bullet Pea(Controller controller, int row, int column) {
+    
+	/** 
+	 * @param controller 控制器
+	 * @param row 行
+	 * @param column 列
+	 * @return Bullet 生成的新子弹对象
+	 */
+	public Bullet Pea(Controller controller, int row, int column) {
         Bullet tempBullet = new Bullet(controller, row, column);
         tempBullet.img = new ImageIcon("img\\Bullets\\PeaShooter.png");
         return tempBullet;
     }
 
-    public void bulletAttack(Zombie zombie) {
+    
+	/** 
+	 * @param zombie 被攻击到的僵尸
+	 */
+	public void bulletAttack(Zombie zombie) {
         zombie.reduceHP(20);
     }
 
