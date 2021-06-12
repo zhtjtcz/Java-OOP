@@ -35,14 +35,15 @@ public class ZombieProducer implements Runnable {
         while (controller.isRunning()) {
             try {
                 Thread.sleep((int) (Math.random() * 250) + 5000);
-                int row = (int) (Math.random() * 5);
-                int type = (int) (Math.random() * 50) % 2;
+                int row = (int) (Math.random() * 5);//?
+                int remainder = (int) (Math.random() * 50) % 7;
                 Zombie tempZombie;
-                //if (type == 0)
-                //    tempZombie = new Card.Zombie().normalZombie(controller, row);
-                //else
-//                tempZombie = new Zombie().BucketZombie(controller, row);
-                tempZombie = new Zombie(controller).getZombie("BucketZombie");
+                if (remainder < 3)
+                    tempZombie = new Zombie(controller).getZombie("NormalZombie");
+                else if (remainder < 5)
+                    tempZombie = new Zombie(controller).getZombie("hzyZombie");
+                else
+                    tempZombie = new Zombie(controller).getZombie("BucketZombie");
                 tempZombie.setRow(row);
                 System.out.println(row);
                 controller.getLayeredPane().add(tempZombie, Integer.valueOf(400));
