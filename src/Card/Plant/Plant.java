@@ -303,7 +303,7 @@ public class Plant extends JLabel implements Runnable {
     }
     
     public Plant Potato() {
-        Plant tempPlant = new Plant("Potato", 50, 0, 300, 9, true);
+        Plant tempPlant = new Plant("Potato", 25, 0, 300, 9, true);
         tempPlant.CD = 10000 / 90;
         tempPlant.cardCD = 8000;
         tempPlant.sleepTime = 90;

@@ -34,8 +34,8 @@ public class ZombieProducer implements Runnable {
 
         while (controller.isRunning()) {
             try {
-                Thread.sleep((int) (Math.random() * 250) + 5000);
-                int row = (int) (Math.random() * 5);//?
+                Thread.sleep((int) (Math.random() * 250) + 10000);
+                int row = (int) (Math.random() * 50) % 5;//?
                 int remainder = (int) (Math.random() * 50) % 7;
                 Zombie tempZombie;
                 if (remainder < 3)
